@@ -1,711 +1,117 @@
-# BDM_Project
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jai Maa Jhandewali Store - BDM Capstone Dashboard</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> <!-- Date Adapter -->
+# 🧾 BDM Capstone Dashboard – Jai Maa Jhandewali Store
 
+**Optimizing Inventory and Operations for Sustainable Growth**
 
-  <style>
-    /* Base font */
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+This is an interactive, data-driven dashboard built using **HTML**, **Tailwind CSS**, and **Chart.js**. It presents the complete Business Data Management (BDM) capstone project conducted on a local Delhi-based grocery store – *Jai Maa Jhandewali Store*. The dashboard captures insights derived from real sales data, proposes data-backed strategies, and visualizes operational challenges and recommendations for sustainable business growth.
 
-    /* Active Tab Styling */
-    .tab-button.active {
-        @apply border-indigo-500 text-indigo-600 border-b-2 font-semibold bg-indigo-50;
-    }
-    .tab-button {
-        @apply border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300;
-    }
+---
 
-    /* Image Gallery Fade Transition */
-    .store-image {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0; transition: opacity 0.7s ease-in-out; object-fit: contain;
-    }
-    .store-image.active { opacity: 1; }
+## 📌 Project Overview
 
-     /* Custom list bullet styling */
-     .metadata-card li::before, .insights li::before {
-        content: '▹'; /* Using a different character */
-        color: #4f46e5; /* indigo-600 */
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-        font-size: 1.1em;
-        line-height: 1.1; /* Adjust line height */
-     }
-     .metadata-card li, .insights li {
-        padding-left: 1.25rem; /* More space for bullet */
-        position: relative;
-        margin-bottom: 0.3rem; /* Tighter list spacing */
-     }
-     .insights ul, .metadata-card ul {
-         list-style: none; /* Remove default */
-         padding-left: 0;
-     }
+- **Store Name**: Jai Maa Jhandewali Store
+- **Location**: VP Block, Pitampura, Delhi
+- **Type**: Family-run B2C grocery store
+- **Owner**: Mr. Satyam Prakash
+- **Timeline of Data**: Jan 2024 – Jan 2025
+- **Team Member**: Sumit Kumar (`22f2000848@ds.study.iitm.ac.in`)
 
-    /* General Card Styling */
-    .dashboard-card { @apply bg-white rounded-xl shadow-md p-5 transition-shadow duration-300 hover:shadow-lg; }
+---
 
-    /* Responsive Grid */
-    .dashboard-grid { @apply grid grid-cols-1 lg:grid-cols-2 gap-5; } /* Adjusted gap */
-    .full-width { @apply lg:col-span-2; }
+## 🧠 Problem Statement
 
-     /* Table Styling */
-    .data-table-container { @apply overflow-x-auto; }
-    .data-table { @apply min-w-full text-sm border-collapse border border-gray-200; }
-    .data-table th { @apply p-2 text-left font-semibold text-gray-700 bg-gray-100 border-b border-gray-300 sticky top-0 z-10; }
-    .data-table td { @apply p-2 border border-gray-200 whitespace-nowrap; }
-    .data-table tbody tr:nth-child(even) { @apply bg-gray-50; }
-    .data-table tbody tr:hover { @apply bg-indigo-50; }
+The store faces several challenges:
+- Inefficient **inventory management** (overstocking, wastage, stockouts)
+- Severe **space constraints** for storage and display
+- **Manual operations** limiting growth and scalability
 
-    /* Chart Container Styling */
-    .chart-container {
-       @apply w-full relative mb-3 p-2;
-       min-height: 300px; /* Default min height for charts */
-       height: 350px; /* Default height */
-    }
-    .chart-container-abc { /* Specific height for ABC */
-        @apply w-full relative mb-3 p-2;
-        min-height: 280px;
-        height: 280px;
-    }
-     .chart-container-corr { /* Specific height for Correlation */
-        @apply w-full relative mb-3 p-2;
-        min-height: 250px;
-        height: 250px;
-    }
+---
 
+## 📊 Data Details
 
-    /* Accent Borders */
-    .card-accent-left { @apply border-l-4 border-indigo-500 pl-5; }
+- **Source**: Primary data from the store (digitized records + interviews)
+- **Scope**: Daily aggregated sales data for 13 months
+- **Format**: Cleaned Excel data, 14 columns (Date + 13 SKUs)
+- **Access**: [View Dataset](https://docs.google.com/spreadsheets/d/1hMAmaAbf4dJ4aiPyztVxLYa6_tDHUOJYUaob6Naxx18/edit?usp=sharing)
 
-    /* Highlight Class */
-    .highlight { color: #e74c3c; font-weight: bold; } /* Similar to PPT.html */
+---
 
-  </style>
-</head>
-<body class="bg-gray-100 text-gray-700">
-  <div class="container mx-auto p-4 md:p-6 lg:p-8 max-w-7xl">
+## 🔬 Methods of Analysis
 
-    <div class="dashboard-grid">
-      <!-- Project Title Card -->
-      <div class="full-width bg-gradient-to-br from-cyan-500 to-blue-700 text-white rounded-xl shadow-xl p-8 flex flex-col items-center text-center">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png" alt="IIT Madras Logo" class="h-20 w-auto mb-4">
-        <h1 class="text-3xl md:text-4xl font-bold mb-2 tracking-tight">Optimizing Inventory and Operations for Sustainable Growth</h1>
-        <p class="text-xl md:text-2xl font-light mb-6">Jai Maa Jhandewali Store - BDM Capstone Project</p>
-        <div class="text-base md:text-lg opacity-95 bg-black bg-opacity-20 px-4 py-1 rounded-md">
-          <p><span class="font-semibold">Sumit Kumar</span> | Roll No: <span class="font-semibold">22f2000848</span></p>
-          <p>Mail: <span class="font-semibold">22f2000848@ds.study.iitm.ac.in</span></p>
-        </div>
-      </div>
+| Technique            | Purpose                                                  |
+|----------------------|----------------------------------------------------------|
+| Descriptive Stats    | Identify sales patterns via Mean, Median, Std Dev        |
+| Trend Analysis       | Seasonality and category trends using charts             |
+| ABC Segmentation     | Prioritize inventory based on sales contribution         |
+| Correlation Analysis | Find cross-category purchase relationships               |
+| ML Forecasting       | Predict future sales (example: Milk) via Linear Regression|
 
-      <!-- Store Information Card -->
-      <div class="dashboard-card card-accent-left">
-        <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">About Jai Maa Jhandewali Store</h2>
-        <div class="store-images relative h-64 md:h-72 bg-gray-200 rounded-lg mb-4 overflow-hidden shadow-inner">
-           <!-- Store Images -->
-           <!-- Assuming images are local or correct URLs -->
-           <img src="https://i.ibb.co/T3rRXHf/Screenshot-2025-04-22-080742.png" alt="Store Front" class="store-image active" id="storeImage1">
-           <img src="https://i.ibb.co/35vY7zjV/Screenshot-2025-04-22-080939.png" alt="Store Interior" class="store-image" id="storeImage2">
-           <img src="https://i.ibb.co/ZzwVnsck/Screenshot-2025-04-22-081125.png" alt="Authorization Letter" class="store-image" id="storeImage3">
-        </div>
-        <div class="image-nav flex justify-center gap-4 mb-4">
-          <button onclick="changeStoreImage(-1)" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out text-sm shadow hover:shadow-md">Previous</button>
-          <button onclick="changeStoreImage(1)" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out text-sm shadow hover:shadow-md">Next</button>
-        </div>
-        <div class="insights text-sm mt-4">
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Store Overview:</h3>
-          <ul class="space-y-1 text-gray-600">
-            <li><strong>Type:</strong> Family-run B2C grocery store</li>
-            <li><strong>Location:</strong> VP Block, Pitampura, Delhi</li>
-            <li><strong>Owner:</strong> Mr. Satyam Prakash (Student)</li>
-            <li><strong>Established:</strong> ~2 years ago</li>
-            <li><strong>Products:</strong> Daily essentials, dairy, groceries, FMCG</li>
-            <li><strong>Operations:</strong> 9 AM - 9 PM, Family-run</li>
-          </ul>
-        </div>
-      </div>
+---
 
-      <!-- Problem Statement Card -->
-       <div class="dashboard-card card-accent-left">
-         <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">Problem Statement & Background</h2>
-          <div class="insights text-sm">
-           <h3 class="text-lg font-semibold text-gray-700 mb-2">Identified Objectives:</h3>
-           <ul class="space-y-1 text-gray-600">
-             <li>
-               <strong>Inventory Management Issues:</strong> Difficulty maintaining optimal stock, managing fluctuations for perishables/seasonal items, avoiding wastage/missed sales.
-             </li>
-              <li>
-               <strong>Space Constraints:</strong> Limited physical space restricts efficient storage, product range expansion, and managing slow-moving products.
-             </li>
-             <li>
-               <strong>Limited Business Growth:</strong> Reliance on family-run operations & manual systems hinders scalability and operational efficiency.
-             </li>
-           </ul>
-           <h3 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Problem Background:</h3>
-            <p class="text-gray-600 mb-2">The store handles diverse SKUs with varying shelf lives. The owner's academic commitments limit time for detailed inventory management, leading to overstocking or stockouts, especially for high-demand/seasonal items. Lack of automated systems worsens this.</p>
-            <p class="text-gray-600 mb-2">Operating from a single room attached to home creates significant space limits. Excess inventory stored in the house is inefficient. This restricts product range expansion and complicates stock handling.</p>
-            <p class="text-gray-600">The family-run model faces scalability challenges due to potential inconsistencies and lack of professional systems (sales/inventory tracking). Competition from quick-commerce platforms necessitates exploring options like home delivery.</p>
-         </div>
-       </div>
+## 📈 Key Visualizations
 
+- Monthly sales distribution
+- Category trends over time
+- ABC volume segmentation
+- Inter-category correlations
+- Linear regression sales prediction
 
-      <!-- Data Overview & Metadata Card -->
-       <div class="full-width dashboard-card card-accent-left">
-         <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">Data Overview & Collection</h2>
-         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm"> <!-- Adjusted grid columns -->
-           <div class="metadata-card bg-indigo-50 p-4 rounded border border-indigo-200">
-             <h3 class="text-lg font-semibold text-indigo-700 mb-2">Source & Scope</h3>
-             <ul class="space-y-1 text-gray-700">
-               <li><strong>Type:</strong> Primary Data</li>
-               <li><strong>Source:</strong> Jai Maa Jhandewali Store</li>
-               <li><strong>Collection:</strong> Record Digitization, Interviews</li>
-               <li><strong>Period:</strong> Jan 2024 - Jan 2025 (13 Mo)</li>
-             </ul>
-           </div>
-           <div class="metadata-card bg-indigo-50 p-4 rounded border border-indigo-200">
-             <h3 class="text-lg font-semibold text-indigo-700 mb-2">Dataset Details</h3>
-             <ul class="space-y-1 text-gray-700">
-               <li><strong>Format:</strong> Cleaned, daily aggregated</li>
-               <li><strong>Records:</strong> 398 days</li>
-               <li><strong>Columns:</strong> 14 (Date + 13 SKUs)</li>
-                <li><a href="https://docs.google.com/spreadsheets/d/1hMAmaAbf4dJ4aiPyztVxLYa6_tDHUOJYUaob6Naxx18/edit?usp=sharing" target="_blank" class="text-indigo-600 hover:underline font-medium">View Dataset</a></li>
-             </ul>
-           </div>
-           <div class="metadata-card bg-indigo-50 p-4 rounded border border-indigo-200">
-             <h3 class="text-lg font-semibold text-indigo-700 mb-2">Key Categories</h3>
-             <ul class="space-y-1 text-gray-700">
-                <li><strong>Dairy:</strong> Milk, Butter</li>
-                <li><strong>Groceries:</strong> Rice, Wheat, Pulse...</li>
-                <li><strong>FMCG:</strong> Bread, Soft Drinks, Chips...</li>
-                 <li><span class="font-medium text-indigo-600">13 Total SKUs Tracked</span></li>
-             </ul>
-           </div>
-         </div>
-       </div>
+---
 
-      <!-- Analysis Methods Card -->
-       <div class="full-width dashboard-card card-accent-left">
-           <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">Analysis Methods Used</h2>
-           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-sm"> <!-- Changed to 5 cols for methods -->
-               <div class="analysis-method p-4 bg-teal-50 rounded border border-teal-200">
-                   <h3 class="font-semibold text-teal-700 mb-1">1. Descriptive Stats</h3>
-                   <p class="text-gray-600">Calculated stats (Mean, Median, StdDev) to understand SKU sales patterns.</p>
-               </div>
-               <div class="analysis-method p-4 bg-teal-50 rounded border border-teal-200">
-                   <h3 class="font-semibold text-teal-700 mb-1">2. Trend Analysis</h3>
-                   <p class="text-gray-600">Identified seasonal/weekly patterns using Box Plots & Line Charts.</p>
-               </div>
-               <div class="analysis-method p-4 bg-teal-50 rounded border border-teal-200">
-                   <h3 class="font-semibold text-teal-700 mb-1">3. ABC Segmentation</h3>
-                   <p class="text-gray-600">Classified products (A, B, C) by sales volume contribution.</p>
-               </div>
-               <div class="analysis-method p-4 bg-teal-50 rounded border border-teal-200">
-                   <h3 class="font-semibold text-teal-700 mb-1">4. Correlation Analysis</h3>
-                   <p class="text-gray-600">Used Pearson Correlation & Heatmap for category relationships.</p>
-               </div>
-                <div class="analysis-method p-4 bg-teal-50 rounded border border-teal-200">
-                   <h3 class="font-semibold text-teal-700 mb-1">5. Sales Prediction (ML)</h3>
-                   <p class="text-gray-600">Applied Linear Regression (Milk example) to show forecast feasibility.</p>
-               </div>
-           </div>
-       </div>
+## 💡 Recommendations
 
-      <!-- Results & Findings Section -->
-       <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-           <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">Results & Findings</h2>
-           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+### Inventory Optimization
+- Apply **ABC classification** to tailor stocking
+- Use **Just-In-Time (JIT)** for perishables
+- Start with **basic sales forecasting**
 
-                <!-- Monthly Sales Bar Chart (Replacing Box Plot) -->
-                 <div class="dashboard-card border border-gray-100 shadow-sm p-4">
-                   <h3 class="text-lg font-semibold text-gray-700 mb-1 text-center">Average Monthly Sales Distribution</h3>
-                   <p class="text-center text-xs text-gray-500 mb-2">(Aggregated Daily Units - Placeholder Data)</p>
-                   <div class="chart-container">
-                      <canvas id="monthlySalesChart"></canvas> <!-- Replaced img with canvas -->
-                   </div>
-                   <div class="insights text-xs mt-2">
-                     <ul class="list-none pl-0">
-                       <li>▸ Peak Average Sales: <span class="highlight">Oct & Dec</span></li>
-                       <li>▸ Summer Peak: <span class="highlight">May-July</span></li>
-                       <li>▸ Lowest Average Sales: <span class="highlight">Jan & Feb</span></li>
-                       <li> (Note: Bar chart shows averages, original box plot showed distribution spread)</li>
-                     </ul>
-                   </div>
-                 </div>
+### Space Utilization
+- Invest in **vertical shelving**
+- Dedicate shelf space to **Category A & B** products
 
-                 <!-- Category Sales Trend -->
-                 <div class="dashboard-card border border-gray-100 shadow-sm p-4">
-                   <h3 class="text-lg font-semibold text-gray-700 mb-1 text-center">Monthly Sales Trend by Category</h3>
-                    <p class="text-center text-xs text-gray-500 mb-2">(Placeholder Data)</p>
-                   <div class="chart-container">
-                       <canvas id="categoryTrendChart"></canvas> <!-- Replaced img with canvas -->
-                   </div>
-                   <div class="insights text-xs mt-2">
-                     <ul class="list-none pl-0">
-                       <li>▸ <span class="highlight">FMCG</span> leads sales volume.</li>
-                       <li>▸ <span class="highlight">Dairy</span> consistently second.</li>
-                       <li>▸ <span class="highlight">Groceries</span> lowest volume.</li>
-                       <li>▸ Seasonal peak for FMCG in Summer (May-July).</li>
-                     </ul>
-                   </div>
-                 </div>
+### Growth & Automation
+- Transition to **POS systems**
+- Consider **seasonal bundling** and **home delivery**
 
-                 <!-- ABC Analysis -->
-                 <div class="dashboard-card border border-gray-100 shadow-sm p-4">
-                     <h3 class="text-lg font-semibold text-gray-700 mb-1 text-center">ABC Analysis (by Volume Contribution)</h3>
-                     <p class="text-center text-xs text-gray-500 mb-2">(Placeholder Data)</p>
-                     <div class="chart-container-abc"> <!-- Adjusted height via class -->
-                       <canvas id="abcChart"></canvas> <!-- Replaced img with canvas -->
-                     </div>
-                     <div class="insights text-xs mt-2">
-                       <ul class="list-none pl-0">
-                         <li><strong>A (~76%):</strong> Milk, Bread, Chips, Biscuits... <span class="highlight">(Prioritize)</span></li>
-                         <li><strong>B (~17%):</strong> Pulse, Sugar, Butter... <span class="highlight">(Monitor)</span></li>
-                         <li><strong>C (~7%):</strong> Rice, Spices, Salt <span class="highlight">(Optimize)</span></li>
-                       </ul>
-                     </div>
-                   </div>
+---
 
-                 <!-- Category Correlation -->
-                  <div class="dashboard-card border border-gray-100 shadow-sm p-4">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-1 text-center">Key Category Sales Correlations</h3>
-                    <p class="text-center text-xs text-gray-500 mb-2">(Placeholder Data - Replaced Heatmap)</p>
-                     <div class="chart-container-corr"> <!-- Adjusted height via class -->
-                         <canvas id="correlationChart"></canvas> <!-- Replaced img with canvas -->
-                    </div>
-                     <div class="insights text-xs mt-2">
-                      <h4 class="font-medium mb-1">Key Correlations:</h4>
-                       <ul class="list-none pl-0">
-                         <li>FMCG & Groceries: <span class="font-semibold text-emerald-600">~0.65</span></li>
-                         <li>FMCG & Dairy: <span class="font-semibold text-sky-600">~0.61</span></li>
-                         <li>Dairy & Groceries: <span class="font-semibold text-rose-600">~0.43</span></li>
-                       </ul>
-                       <p class="mt-1">Suggests bundling/placement opportunities.</p>
-                     </div>
-                   </div>
+## 🚀 Project Impact
 
-                   <!-- Milk Prediction -->
-                    <div class="dashboard-card border border-gray-100 shadow-sm p-4 md:col-span-2"> <!-- Span full width -->
-                       <h3 class="text-lg font-semibold text-gray-700 mb-1 text-center">Sales Prediction Example: Milk</h3>
-                       <p class="text-center text-xs text-gray-500 mb-2">(Linear Regression vs. Actual Monthly - Placeholder Data)</p>
-                       <div class="chart-container">
-                          <canvas id="milkPredictionChart"></canvas> <!-- Replaced img with canvas -->
-                       </div>
-                       <div class="insights text-sm mt-2">
-                         <ul>
-                           <li>▸ Model captures general trend, useful for baseline planning.</li>
-                           <li>▸ Misses volatility; advanced models (ARIMA) needed for accuracy.</li>
-                           <li>▸ <span class="highlight">Validation (RMSE) required before use.</span></li>
-                         </ul>
-                       </div>
-                   </div>
-            </div>
-        </div>
+| Financial             | Operational                | Strategic                       |
+|----------------------|----------------------------|----------------------------------|
+| Increased Profitability | Better Stock Management | Scalability of Operations         |
+| Reduced Wastage        | Smoother Processes        | Improved Customer Satisfaction   |
+| Cash Flow Efficiency   | Fewer Stockouts           | Competitive Edge Against Q-Commerce |
 
+---
 
-      <!-- Recommendations -->
-       <div class="full-width dashboard-card card-accent-left">
-         <h2 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-gray-200">Recommendations</h2>
-         <div class="tab-container">
-           <div class="tab-buttons flex flex-wrap border-b border-gray-300 mb-4">
-             <button class="tab-button px-4 py-2 mr-1 mb-1 rounded-t-md transition duration-150 ease-in-out active" onclick="showRecTab('recInv')">Inventory</button>
-             <button class="tab-button px-4 py-2 mr-1 mb-1 rounded-t-md transition duration-150 ease-in-out" onclick="showRecTab('recSpace')">Space/Layout</button>
-             <button class="tab-button px-4 py-2 mr-1 mb-1 rounded-t-md transition duration-150 ease-in-out" onclick="showRecTab('recGrowth')">Growth</button>
-             <button class="tab-button px-4 py-2 mb-1 rounded-t-md transition duration-150 ease-in-out" onclick="showRecTab('recImpact')">Impact</button>
-           </div>
+## 📁 How to Run
 
-           <div class="tab-content active" id="recInv">
-             <h3 class="text-lg font-semibold text-gray-700 mb-3">Optimizing Inventory:</h3>
-              <div class="data-table-container">
-                  <table class="data-table w-full">
-                     <thead class="bg-gray-100"><tr><th class="p-2 text-left">Recommendation</th><th class="p-2 text-left">Rationale</th><th class="p-2 text-left">Priority</th></tr></thead>
-                     <tbody class="divide-y divide-gray-200">
-                         <tr class="hover:bg-indigo-50"><td class="p-2">JIT/Lean for Cat A perishables</td><td class="p-2">High volume, wastage risk</td><td class="p-2 font-medium text-red-600">High</td></tr>
-                         <tr class="hover:bg-indigo-50"><td class="p-2">Adjust stock via ABC Analysis</td><td class="p-2">Align stock with sales</td><td class="p-2 font-medium text-red-600">High</td></tr>
-                         <tr class="hover:bg-indigo-50"><td class="p-2">Use Sales Forecasts (start simple)</td><td class="p-2">Reduce guesswork</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                         <tr class="hover:bg-indigo-50"><td class="p-2">Improve supplier communication</td><td class="p-2">Ensure peak availability</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                         <tr class="hover:bg-indigo-50"><td class="p-2">Discount near-expiry items</td><td class="p-2">Reduce spoilage loss</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                     </tbody>
-                  </table>
-              </div>
-           </div>
+1. Clone/download the repository.
+2. Open `new.html` in your browser.
+3. Interactive visualizations load instantly (Chart.js CDN used).
+4. Dataset and placeholder values are embedded for demonstration.
 
-           <div class="tab-content hidden" id="recSpace">
-             <h3 class="text-lg font-semibold text-gray-700 mb-3">Addressing Space & Layout:</h3>
-               <div class="data-table-container">
-                  <table class="data-table w-full">
-                      <thead class="bg-gray-100"><tr><th class="p-2 text-left">Recommendation</th><th class="p-2 text-left">Rationale</th><th class="p-2 text-left">Priority</th></tr></thead>
-                      <tbody class="divide-y divide-gray-200">
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Prioritize shelf space for Cat A & B</td><td class="p-2">Maximize revenue/space</td><td class="p-2 font-medium text-red-600">High</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Optimize layout: Place correlated items nearby</td><td class="p-2">Encourage cross-selling</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Invest in vertical shelving</td><td class="p-2">Maximize storage capacity</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Reduce stock of Cat C items</td><td class="p-2">Free up valuable space</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                      </tbody>
-                  </table>
-               </div>
-           </div>
+---
 
-           <div class="tab-content hidden" id="recGrowth">
-             <h3 class="text-lg font-semibold text-gray-700 mb-3">Enhancing Business Growth:</h3>
-             <div class="data-table-container">
-                  <table class="data-table w-full">
-                      <thead class="bg-gray-100"><tr><th class="p-2 text-left">Recommendation</th><th class="p-2 text-left">Rationale</th><th class="p-2 text-left">Priority</th></tr></thead>
-                      <tbody class="divide-y divide-gray-200">
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Automate Tracking (Excel -> POS)</td><td class="p-2">Reduce manual effort, enable analysis</td><td class="p-2 font-medium text-red-600">High</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Hire Temporary Support (Peaks/Exams)</td><td class="p-2">Manage bottlenecks, owner focus</td><td class="p-2 font-medium text-red-600">High</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Introduce Targeted Home Delivery</td><td class="p-2">Compete, add convenience</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Implement Seasonal/Bundled Promotions</td><td class="p-2">Boost sales, use correlations</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                          <tr class="hover:bg-indigo-50"><td class="p-2">Establish Backup Operational Plan</td><td class="p-2">Ensure business continuity</td><td class="p-2 font-medium text-yellow-600">Medium</td></tr>
-                      </tbody>
-                  </table>
-               </div>
-           </div>
+## 📌 Tech Stack
 
-           <div class="tab-content hidden" id="recImpact">
-             <h3 class="text-lg font-semibold text-gray-700 mb-3">Projected Benefits:</h3>
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-sm">
-               <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 shadow-sm">
-                 <h4 class="font-semibold text-emerald-700 mb-2 text-lg flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 inline" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg> Financial</h4>
-                 <ul class="list-disc list-inside space-y-1 text-gray-600 ml-2">
-                   <li>Profit Margin Increase</li>
-                   <li>Reduced Wastage Costs</li>
-                   <li>Improved Cash Flow</li>
-                    <li>Revenue Growth Potential</li>
-                 </ul>
-               </div>
-               <div class="bg-sky-50 p-4 rounded-lg border border-sky-200 shadow-sm">
-                 <h4 class="font-semibold text-sky-700 mb-2 text-lg flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 inline" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg> Operational</h4>
-                 <ul class="list-disc list-inside space-y-1 text-gray-600 ml-2">
-                   <li>Fewer Stockouts</li>
-                   <li>Optimized Inventory/Space</li>
-                   <li>Streamlined Processes</li>
-                    <li>Better Demand Preparedness</li>
-                 </ul>
-               </div>
-               <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 shadow-sm">
-                 <h4 class="font-semibold text-amber-700 mb-2 text-lg flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 inline" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg> Strategic</h4>
-                 <ul class="list-disc list-inside space-y-1 text-gray-600 ml-2">
-                   <li>Enhanced Customer Satisfaction</li>
-                   <li>Improved Competitiveness</li>
-                   <li>Sustainable Growth Path</li>
-                    <li>Reduced Owner Burden</li>
-                 </ul>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div> <!-- End dashboard-grid -->
-   </div> <!-- End container -->
+- **Frontend**: HTML5, Tailwind CSS
+- **Visualization**: Chart.js
+- **Other**: Google Sheets for data, JS for interactivity
 
-  <script>
-    // --- JavaScript for Tabs, Image Gallery, and Charts ---
+---
 
-    function showTab(tabId) {
-       const targetTab = document.getElementById(tabId);
-       if (!targetTab) { console.error("Target tab not found:", tabId); return; }
-       const tabContainer = targetTab.closest('.tab-container');
-       if (!tabContainer) { console.error("Tab container not found for:", tabId); return; }
-       const tabContents = tabContainer.querySelectorAll('.tab-content');
+## 👤 Author
 
-        // Hide all tab contents
-       tabContents.forEach(tab => {
-           // Using Tailwind classes for visibility control
-           tab.classList.add('hidden');
-           tab.classList.remove('active', 'block');
-        });
+**Sumit Kumar**  
+Roll No: `22f2000848`  
+BDM Capstone Project – IIT Madras  
+📧 Email: `22f2000848@ds.study.iitm.ac.in`
 
-       // Show the target tab content
-       targetTab.classList.remove('hidden');
-       targetTab.classList.add('active', 'block'); // 'active' might be symbolic now, 'block' does the showing
+---
 
-       const tabButtons = tabContainer.querySelectorAll('.tab-button');
-        // Remove active styles from all buttons
-       tabButtons.forEach(button => {
-            button.classList.remove('active', 'border-indigo-500', 'text-indigo-600', 'bg-indigo-50', 'font-semibold');
-            button.classList.add('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300'); // Ensure default styles
-       });
+## 📎 License
 
-        // Add active styles to the clicked button's corresponding button
-       for (let button of tabButtons) {
-           const onclickAttr = button.getAttribute('onclick');
-           const targetIdMatch = onclickAttr ? onclickAttr.match(/showRecTab\('([^']+)'\)|showTab\('([^']+)'\)/) : null;
-           const currentTargetId = targetIdMatch ? (targetIdMatch[1] || targetIdMatch[2]) : null;
-           if (currentTargetId === tabId) {
-                button.classList.add('active', 'border-indigo-500', 'text-indigo-600', 'bg-indigo-50', 'font-semibold'); // Apply active styles
-                button.classList.remove('text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
-               break;
-           }
-        }
-    }
+This project is open for academic, demonstration, and non-commercial use. Attribution appreciated.
 
-    // Alias function for recommendation tabs
-    function showRecTab(tabId) { showTab(tabId); }
-
-    let currentStoreImage = 1;
-    const totalStoreImages = 3; // Updated to 3 for store images + auth letter
-
-    function changeStoreImage(direction) {
-      const currentImgElement = document.getElementById(`storeImage${currentStoreImage}`);
-      if (currentImgElement) currentImgElement.classList.remove('active'); // Hide current
-      currentStoreImage += direction;
-      // Loop gallery
-      if (currentStoreImage > totalStoreImages) currentStoreImage = 1;
-      else if (currentStoreImage < 1) currentStoreImage = totalStoreImages;
-      const nextImgElement = document.getElementById(`storeImage${currentStoreImage}`);
-      if (nextImgElement) nextImgElement.classList.add('active'); // Show next
-    }
-
-    // --- Chart.js Integration ---
-
-    // Helper function to create charts (similar to PPT.html)
-    function createChart(id, type, data, options) {
-      const ctx = document.getElementById(id)?.getContext('2d');
-       if (!ctx) {
-           console.error(`Canvas element with ID "${id}" not found.`);
-           return null;
-        }
-      // Default options for styling consistency
-      const defaultOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'top',
-                 labels: {
-                     font: { size: 10 }, // Smaller legend font
-                     boxWidth: 15,
-                     padding: 10
-                 }
-            },
-            tooltip: {
-                mode: 'index',
-                intersect: false,
-                bodyFont: { size: 10 },
-                titleFont: { size: 11 }
-            },
-            title: { // Default title options (can be overridden)
-                display: false, // Keep it off by default, use card title
-                font: { size: 14 }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    font: { size: 10 },
-                    autoSkip: true, // Allow auto-skipping for dense labels
-                    maxRotation: 45,
-                    minRotation: 0
-                },
-                grid: { display: false } // Cleaner look
-            },
-            y: {
-                beginAtZero: true,
-                ticks: { font: { size: 10 } },
-                grid: { color: '#e5e7eb' } // Lighter grid lines (gray-200)
-            }
-        }
-      };
-      // Deep merge options (simplified version, assumes basic structure)
-      const mergedOptions = {
-          ...defaultOptions,
-          ...options,
-          plugins: { ...defaultOptions.plugins, ...options?.plugins },
-          scales: {
-              x: { ...defaultOptions.scales.x, ...options?.scales?.x, ticks: {...defaultOptions.scales.x.ticks, ...options?.scales?.x?.ticks}},
-              y: { ...defaultOptions.scales.y, ...options?.scales?.y, ticks: {...defaultOptions.scales.y.ticks, ...options?.scales?.y?.ticks}},
-              // Allow for secondary y-axis if defined
-              ...(options?.scales?.y1 && { y1: { ...defaultOptions.scales.y, position: 'right', grid: { drawOnChartArea: false }, ...options.scales.y1, ticks: {...defaultOptions.scales.y.ticks, ...options?.scales?.y1?.ticks}}})
-            }
-       };
-
-      return new Chart(ctx, {
-        type: type,
-        data: data,
-        options: mergedOptions
-      });
-    }
-
-    // --- Chart Data (PLACEHOLDERS - REPLACE WITH YOUR ACTUAL DATA) ---
-    const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan+1']; // 13 Months
-    const monthAvgSalesData = [100, 95, 110, 130, 180, 190, 195, 120, 125, 210, 140, 205, 90]; // Placeholder average sales
-
-    const fmcgSalesData = [2000, 1700, 2100, 2400, 3000, 3100, 3050, 2000, 1800, 2900, 2100, 2800, 1600];
-    const dairySalesData = [1200, 1100, 1300, 1500, 1900, 2000, 1950, 1400, 1500, 2100, 1500, 2000, 1100];
-    const groceriesSalesData = [800, 700, 900, 1000, 1200, 1300, 1250, 800, 850, 1100, 850, 1000, 700];
-
-    const abcCategories = ['A', 'B', 'C'];
-    const abcVolumePercent = [76, 17, 7];
-
-    const correlationPairs = ['FMCG & Groceries', 'FMCG & Dairy', 'Dairy & Groceries'];
-    const correlationValues = [0.65, 0.61, 0.43];
-
-    const milkActualSales = [1200, 1000, 1150, 1300, 1600, 1700, 1650, 1250, 1300, 1800, 1400, 1750, 950]; // Monthly units for Milk (Placeholder)
-    const milkPredictedSales = [1180, 1100, 1200, 1350, 1550, 1680, 1600, 1300, 1350, 1700, 1450, 1650, 1050]; // Placeholder predictions
-
-    // --- Initialize Charts on DOM Load ---
-    document.addEventListener("DOMContentLoaded", () => {
-        // Initialize Recommendation Tabs
-        showRecTab('recInv');
-
-        // Initialize Store Image Gallery
-         const firstStoreImage = document.getElementById('storeImage1');
-         if (firstStoreImage) {
-             firstStoreImage.classList.add('active');
-         } else {
-             console.warn("First store image (storeImage1) not found for gallery initialization.");
-         }
-
-        // --- Create Charts ---
-
-        // 1. Monthly Sales Distribution (Bar Chart replacing Box Plot)
-        createChart('monthlySalesChart', 'bar', {
-            labels: monthLabels,
-            datasets: [{
-                label: 'Average Daily Units Sold',
-                data: monthAvgSalesData,
-                backgroundColor: 'rgba(79, 70, 229, 0.7)', // Indigo-600 with opacity
-                borderColor: 'rgba(79, 70, 229, 1)', // Indigo-600
-                borderWidth: 1
-            }]
-        }, {
-            plugins: { title: { display: true, text: 'Avg. Monthly Sales (Units)' } },
-            scales: { y: { title: { display: true, text: 'Avg. Daily Units' } } }
-        });
-
-        // 2. Category Sales Trend (Line Chart)
-        createChart('categoryTrendChart', 'line', {
-            labels: monthLabels,
-            datasets: [
-                {
-                    label: 'FMCG',
-                    data: fmcgSalesData,
-                    borderColor: 'rgba(220, 38, 38, 1)', // Red-600
-                    backgroundColor: 'rgba(220, 38, 38, 0.1)',
-                    fill: false,
-                    tension: 0.1
-                },
-                {
-                    label: 'Dairy',
-                    data: dairySalesData,
-                    borderColor: 'rgba(59, 130, 246, 1)', // Blue-500
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    fill: false,
-                    tension: 0.1
-                },
-                {
-                    label: 'Groceries',
-                    data: groceriesSalesData,
-                    borderColor: 'rgba(22, 163, 74, 1)', // Green-600
-                    backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                    fill: false,
-                    tension: 0.1
-                }
-            ]
-        }, {
-            plugins: { title: { display: true, text: 'Monthly Sales Units by Category' } },
-            scales: { y: { title: { display: true, text: 'Total Monthly Units' } } }
-        });
-
-         // 3. ABC Analysis (Bar Chart)
-        createChart('abcChart', 'bar', {
-            labels: abcCategories,
-            datasets: [{
-                label: '% Volume Contribution',
-                data: abcVolumePercent,
-                backgroundColor: [
-                    'rgba(22, 163, 74, 0.7)', // Green for A
-                    'rgba(251, 146, 60, 0.7)', // Orange for B
-                    'rgba(220, 38, 38, 0.7)'  // Red for C
-                 ],
-                borderColor: [
-                     'rgba(22, 163, 74, 1)',
-                     'rgba(251, 146, 60, 1)',
-                     'rgba(220, 38, 38, 1)'
-                 ],
-                borderWidth: 1
-            }]
-        }, {
-            plugins: {
-                 title: { display: true, text: 'ABC Analysis (% Volume)' },
-                 legend: { display: false } // Hide legend for simple ABC
-                 },
-            scales: {
-                x: { title: { display: true, text: 'Category' } },
-                y: { title: { display: true, text: '% Contribution' }, max: 100 }
-             }
-        });
-
-        // 4. Category Correlation (Bar Chart replacing Heatmap)
-        createChart('correlationChart', 'bar', {
-            labels: correlationPairs,
-            datasets: [{
-                label: 'Correlation Coefficient',
-                data: correlationValues,
-                backgroundColor: [
-                    'rgba(5, 150, 105, 0.7)', // Emerald-600
-                    'rgba(14, 165, 233, 0.7)', // Sky-500
-                    'rgba(225, 29, 72, 0.7)'   // Rose-600
-                 ],
-                borderColor: [
-                    'rgba(5, 150, 105, 1)',
-                    'rgba(14, 165, 233, 1)',
-                    'rgba(225, 29, 72, 1)'
-                 ],
-                borderWidth: 1
-            }]
-        }, {
-             indexAxis: 'y', // Horizontal Bar Chart
-             plugins: {
-                 title: { display: true, text: 'Key Category Correlations' },
-                 legend: { display: false }
-             },
-             scales: {
-                 x: { title: { display: true, text: 'Correlation Coefficient' }, min: 0, max: 1 },
-                 y: { ticks: { font: { size: 10 }}} // Smaller font for pair names if needed
-             }
-        });
-
-
-        // 5. Milk Sales Prediction (Combo Bar/Line Chart)
-         createChart('milkPredictionChart', 'bar', { // Default type is bar
-            labels: monthLabels,
-            datasets: [
-                {
-                    label: 'Actual Milk Sales',
-                    data: milkActualSales,
-                    backgroundColor: 'rgba(79, 70, 229, 0.6)', // Indigo
-                    borderColor: 'rgba(79, 70, 229, 1)',
-                    borderWidth: 1,
-                    order: 2 // Render bars behind line
-                },
-                {
-                    label: 'Predicted Milk Sales (LR)',
-                    data: milkPredictedSales,
-                    type: 'line', // Override type for this dataset
-                    borderColor: 'rgba(234, 88, 12, 1)', // Orange-600
-                    backgroundColor: 'rgba(234, 88, 12, 0.1)',
-                    fill: false,
-                    tension: 0.1,
-                    borderWidth: 2,
-                    order: 1 // Render line on top
-                 }
-            ]
-         }, {
-             plugins: { title: { display: true, text: 'Milk Sales: Actual vs. Predicted' } },
-             scales: { y: { title: { display: true, text: 'Monthly Units' } } }
-         });
-
-    }); // End DOMContentLoaded
-
-  </script>
-</body>
-</html>
+---
