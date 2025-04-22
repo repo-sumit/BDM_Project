@@ -1,117 +1,129 @@
-# 🧾 BDM Capstone Dashboard – Jai Maa Jhandewali Store
+# 📊 BDM Capstone Dashboard – Jai Maa Jhandewali Store
 
-**Optimizing Inventory and Operations for Sustainable Growth**
+> _“Optimizing Inventory and Operations for Sustainable Growth”_
 
-This is an interactive, data-driven dashboard built using **HTML**, **Tailwind CSS**, and **Chart.js**. It presents the complete Business Data Management (BDM) capstone project conducted on a local Delhi-based grocery store – *Jai Maa Jhandewali Store*. The dashboard captures insights derived from real sales data, proposes data-backed strategies, and visualizes operational challenges and recommendations for sustainable business growth.
-
----
-
-## 📌 Project Overview
-
-- **Store Name**: Jai Maa Jhandewali Store
-- **Location**: VP Block, Pitampura, Delhi
-- **Type**: Family-run B2C grocery store
-- **Owner**: Mr. Satyam Prakash
-- **Timeline of Data**: Jan 2024 – Jan 2025
-- **Team Member**: Sumit Kumar (`22f2000848@ds.study.iitm.ac.in`)
+![Banner](https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg)
 
 ---
 
-## 🧠 Problem Statement
+## 🏪 Project Overview
 
-The store faces several challenges:
-- Inefficient **inventory management** (overstocking, wastage, stockouts)
-- Severe **space constraints** for storage and display
-- **Manual operations** limiting growth and scalability
-
----
-
-## 📊 Data Details
-
-- **Source**: Primary data from the store (digitized records + interviews)
-- **Scope**: Daily aggregated sales data for 13 months
-- **Format**: Cleaned Excel data, 14 columns (Date + 13 SKUs)
-- **Access**: [View Dataset](https://docs.google.com/spreadsheets/d/1hMAmaAbf4dJ4aiPyztVxLYa6_tDHUOJYUaob6Naxx18/edit?usp=sharing)
+| 🧾 Detail          | 📍 Information                              |
+|-------------------|----------------------------------------------|
+| **Store Name**     | Jai Maa Jhandewali Store                    |
+| **Location**       | VP Block, Pitampura, Delhi                  |
+| **Store Type**     | 🛒 Family-run B2C Grocery                   |
+| **Owner**          | Mr. Satyam Prakash                          |
+| **Time Period**    | 📅 Jan 2024 – Jan 2025 (13 months)          |
+| **Team Member**    | 👤 Sumit Kumar (`22f2000848@ds.study.iitm.ac.in`) |
 
 ---
 
-## 🔬 Methods of Analysis
+## ❓ Problem Statement
 
-| Technique            | Purpose                                                  |
-|----------------------|----------------------------------------------------------|
-| Descriptive Stats    | Identify sales patterns via Mean, Median, Std Dev        |
-| Trend Analysis       | Seasonality and category trends using charts             |
-| ABC Segmentation     | Prioritize inventory based on sales contribution         |
-| Correlation Analysis | Find cross-category purchase relationships               |
-| ML Forecasting       | Predict future sales (example: Milk) via Linear Regression|
+### 🔴 Key Challenges
 
----
+- ❌ Overstocking and Stockouts (especially perishables)
+- 📦 Severe Space Constraints
+- 📉 Manual Operations = Limited Scalability
 
-## 📈 Key Visualizations
-
-- Monthly sales distribution
-- Category trends over time
-- ABC volume segmentation
-- Inter-category correlations
-- Linear regression sales prediction
+![Store Photo](https://i.ibb.co/T3rRXHf/Screenshot-2025-04-22-080742.png)
 
 ---
 
-## 💡 Recommendations
+## 📁 Data Collection
 
-### Inventory Optimization
-- Apply **ABC classification** to tailor stocking
-- Use **Just-In-Time (JIT)** for perishables
-- Start with **basic sales forecasting**
-
-### Space Utilization
-- Invest in **vertical shelving**
-- Dedicate shelf space to **Category A & B** products
-
-### Growth & Automation
-- Transition to **POS systems**
-- Consider **seasonal bundling** and **home delivery**
+- 📌 **Source**: Primary – Digitized Records & Interviews
+- 📊 **Scope**: Daily SKU Sales (13 items), 398 days
+- 🧹 **Format**: Cleaned Excel Data  
+- 📈 [👉 View Dataset on Google Sheets](https://docs.google.com/spreadsheets/d/1hMAmaAbf4dJ4aiPyztVxLYa6_tDHUOJYUaob6Naxx18/edit?usp=sharing)
 
 ---
 
-## 🚀 Project Impact
+## 🔬 Analysis Techniques
 
-| Financial             | Operational                | Strategic                       |
-|----------------------|----------------------------|----------------------------------|
-| Increased Profitability | Better Stock Management | Scalability of Operations         |
-| Reduced Wastage        | Smoother Processes        | Improved Customer Satisfaction   |
-| Cash Flow Efficiency   | Fewer Stockouts           | Competitive Edge Against Q-Commerce |
-
----
-
-## 📁 How to Run
-
-1. Clone/download the repository.
-2. Open `new.html` in your browser.
-3. Interactive visualizations load instantly (Chart.js CDN used).
-4. Dataset and placeholder values are embedded for demonstration.
+| 🧠 Method              | 💡 Use Case                                                   |
+|------------------------|---------------------------------------------------------------|
+| 📉 Descriptive Stats   | Understand baseline sales metrics (mean, std, median)         |
+| 📈 Trend Analysis      | Seasonal, weekly patterns using charts                        |
+| 🅰️🅱️©️ ABC Segmentation | Categorize SKUs by volume share                               |
+| 🔗 Correlation Matrix  | Relationship between product categories                       |
+| 🤖 Linear Regression   | Basic sales forecasting (e.g., Milk prediction)               |
 
 ---
 
-## 📌 Tech Stack
+## 📊 Visual Insights
 
-- **Frontend**: HTML5, Tailwind CSS
-- **Visualization**: Chart.js
-- **Other**: Google Sheets for data, JS for interactivity
+| 📌 Insight                         | 🖼️ Chart Example                                                  |
+|-----------------------------------|-------------------------------------------------------------------|
+| Monthly Sales Distribution        | ![Sales Bar](https://placehold.co/600x300?text=Monthly+Sales+Bar)|
+| Category Trend Line Chart         | ![Trend Line](https://placehold.co/600x300?text=Category+Trend)  |
+| ABC Volume Segmentation           | ![ABC Chart](https://placehold.co/600x300?text=ABC+Chart)        |
+| Product Correlations              | ![Correlation](https://placehold.co/600x300?text=Correlation+Bar)|
+| Sales Forecast (Milk)             | ![Prediction](https://placehold.co/600x300?text=Prediction+Chart)|
 
 ---
 
-## 👤 Author
+## 💡 Recommendations Summary
+
+### 📦 Inventory Management
+- ✅ Use ABC Classification to adjust stocking
+- 🧊 Apply JIT for perishable items (Milk, Butter)
+- 📈 Begin with simple forecasts (Excel/Linear Models)
+
+### 🧱 Space Optimization
+- 📐 Invest in vertical shelves
+- 🧮 Allocate space to high-selling SKUs (Cat A & B)
+- 🔄 Reconfigure layout based on correlations (FMCG + Dairy)
+
+### 🚀 Business Growth
+- 💻 Adopt POS for sales tracking
+- 🛵 Offer home delivery for nearby orders
+- 🧠 Use promotions tied to seasonal demand
+
+---
+
+## 📈 Projected Impact
+
+| 📊 Financial Gains     | ⚙️ Operational Gains       | 🧭 Strategic Benefits        |
+|------------------------|----------------------------|------------------------------|
+| 💵 Increased Revenue   | 📉 Reduced Stockouts       | 🚀 Improved Scalability     |
+| 🧊 Lower Wastage Cost  | 📦 Optimized Space Usage   | 🤝 Customer Satisfaction    |
+| 💰 Better Cash Flow    | ⏱️ Reduced Manual Overload | 🏁 Competitive Readiness    |
+
+---
+
+## 🛠️ Tech Stack
+
+- 💻 **Frontend**: HTML5, Tailwind CSS
+- 📊 **Charts**: Chart.js
+- 🧠 **Analysis**: Excel, Python
+- 📋 **Data Source**: Google Sheets
+
+---
+
+## 🧠 Author
 
 **Sumit Kumar**  
-Roll No: `22f2000848`  
-BDM Capstone Project – IIT Madras  
-📧 Email: `22f2000848@ds.study.iitm.ac.in`
+📧 `22f2000848@ds.study.iitm.ac.in`  
+🎓 BDM Capstone – IIT Madras
 
 ---
 
-## 📎 License
+## 🪪 License
 
-This project is open for academic, demonstration, and non-commercial use. Attribution appreciated.
+MIT License – For educational and non-commercial use. Attribution encouraged 🙏
 
 ---
+
+## ⭐ Screenshots (Optional Additions)
+
+> You can replace the placeholders above with actual screenshots or host them via GitHub, Imgur, or PostImage.
+
+- 📌 [ABC Analysis Screenshot](#)
+- 📌 [Monthly Trends Graph](#)
+- 📌 [Correlation Insights](#)
+- 📌 [Milk Forecasting Model Output](#)
+
+---
+
