@@ -53,11 +53,11 @@
 
 | 📌 Insight                         | 🖼️ Chart Example                                                  |
 |-----------------------------------|-------------------------------------------------------------------|
-| Monthly Sales Distribution        | ![Sales Bar](https://placehold.co/600x300?text=Monthly+Sales+Bar)|
-| Category Trend Line Chart         | ![Trend Line](https://placehold.co/600x300?text=Category+Trend)  |
-| ABC Volume Segmentation           | ![ABC Chart](https://placehold.co/600x300?text=ABC+Chart)        |
-| Product Correlations              | ![Correlation](https://placehold.co/600x300?text=Correlation+Bar)|
-| Sales Forecast (Milk)             | ![Prediction](https://placehold.co/600x300?text=Prediction+Chart)|
+| Monthly Sales Distribution        | ![Sales Bar](https://i.ibb.co/vvgmkBBK/Screenshot-2025-04-22-074654.png)|
+| Category Trend Line Chart         | ![Trend Line](https://i.ibb.co/4ZFgPwMQ/Screenshot-2025-04-22-074936.png)  |
+| ABC Volume Segmentation           | ![ABC Chart](https://i.ibb.co/vptmtvT/Screenshot-2025-04-22-075705.png)        |
+| Product Correlations              | ![Correlation](https://i.ibb.co/VWT6kBq2/Screenshot-2025-04-22-075258.png)|
+| Sales Forecast (Milk)             | ![Prediction](https://i.ibb.co/tTp4VPps/Screenshot-2025-04-22-075506.png)|
 
 ---
 
