@@ -7,7 +7,6 @@
 | Project Site :    | https://repo-sumit.github.io/BDM_Project/    |
 |-------------------|----------------------------------------------|
 | Viva Slides :     | https://rb.gy/vq3o72                         |
-|-------------------|----------------------------------------------|
 
 
 ## 🏪 Project Overview
