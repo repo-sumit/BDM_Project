@@ -3,6 +3,11 @@
 > _“Optimizing Inventory and Operations for Sustainable Growth”_
 ---
 
+| Project Link :    | https://repo-sumit.github.io/BDM_Project/    |
+|-------------------|----------------------------------------------|
+
+
+
 ## 🏪 Project Overview
 
 | 🧾 Detail          | 📍 Information                              |
