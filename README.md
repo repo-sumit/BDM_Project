@@ -3,8 +3,8 @@
 > _“Optimizing Inventory and Operations for Sustainable Growth”_
 ---
 
-| Project Link :    | https://repo-sumit.github.io/BDM_Project/    |
-| Viva PPT :    | https://www.canva.com/design/DAGlWuzpCsA/IDvEYA9JNC6uDHOUUOt-SQ/view?utm_content=DAGlWuzpCsA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5891900a56   |
+| Project Site :    | https://repo-sumit.github.io/BDM_Project/    |
+| Viva Slides :     | https://rb.gy/vq3o72                         |
 
 |-------------------|----------------------------------------------|
 
