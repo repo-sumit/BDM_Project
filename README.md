@@ -24,8 +24,6 @@
 - 📦 Severe Space Constraints
 - 📉 Manual Operations = Limited Scalability
 
-![Store Photo](https://i.ibb.co/T3rRXHf/Screenshot-2025-04-22-080742.png)
-
 ---
 
 ## 📁 Data Collection
@@ -103,7 +101,7 @@
 
 **Sumit Kumar**  
 📧 `22f2000848@ds.study.iitm.ac.in`  
-🎓 BDM Capstone – IIT Madras
+🎓 BDM Capstone Project – IIT Madras
 
 ---
 
@@ -112,15 +110,3 @@
 MIT License – For educational and non-commercial use. Attribution encouraged 🙏
 
 ---
-
-## ⭐ Screenshots (Optional Additions)
-
-> You can replace the placeholders above with actual screenshots or host them via GitHub, Imgur, or PostImage.
-
-- 📌 [ABC Analysis Screenshot](#)
-- 📌 [Monthly Trends Graph](#)
-- 📌 [[Correlation Insights](https://i.ibb.co/VWT6kBq2/Screenshot-2025-04-22-075258.png)](#)
-- 📌 [Milk Forecasting Model Output](#)
-
----
-
