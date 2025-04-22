@@ -1,9 +1,6 @@
 # 📊 BDM Capstone Dashboard – Jai Maa Jhandewali Store
 
 > _“Optimizing Inventory and Operations for Sustainable Growth”_
-
-![Banner](https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg)
-
 ---
 
 ## 🏪 Project Overview
@@ -122,7 +119,7 @@ MIT License – For educational and non-commercial use. Attribution encouraged �
 
 - 📌 [ABC Analysis Screenshot](#)
 - 📌 [Monthly Trends Graph](#)
-- 📌 [Correlation Insights](#)
+- 📌 [[Correlation Insights](https://i.ibb.co/VWT6kBq2/Screenshot-2025-04-22-075258.png)](#)
 - 📌 [Milk Forecasting Model Output](#)
 
 ---
