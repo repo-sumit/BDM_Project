@@ -46,7 +46,7 @@
 |------------------------|---------------------------------------------------------------|
 | 📉 Descriptive Stats   | Understand baseline sales metrics (mean, std, median)         |
 | 📈 Trend Analysis      | Seasonal, weekly patterns using charts                        |
-| 🅰️🅱️©️ ABC Segmentation | Categorize SKUs by volume share                               |
+| ©️ ABC Segmentation | Categorize SKUs by volume share                               |
 | 🔗 Correlation Matrix  | Relationship between product categories                       |
 | 🤖 Linear Regression   | Basic sales forecasting (e.g., Milk prediction)               |
 
