@@ -4,6 +4,8 @@
 ---
 
 | Project Link :    | https://repo-sumit.github.io/BDM_Project/    |
+| Viva PPT :    | https://www.canva.com/design/DAGlWuzpCsA/IDvEYA9JNC6uDHOUUOt-SQ/view?utm_content=DAGlWuzpCsA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5891900a56   |
+
 |-------------------|----------------------------------------------|
 
 
