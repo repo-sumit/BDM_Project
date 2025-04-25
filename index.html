@@ -4,7 +4,7 @@
   <!-- Meta tags for character set and responsive viewport -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jai Maa Jhandewali Store - BDM Capstone Dashboard (Large View)</title>
+  <title>Jai Maa Jhandewali Store - BDM Capstone Dashboard (Revised)</title>
 
   <!-- Bootstrap 5 CSS -->
   <!-- Fetches the Bootstrap stylesheet for layout, components, and utilities -->
@@ -21,20 +21,20 @@
     /* Base body styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font stack */
-      background-color: #fdfdfd; /* Bootstrap's light gray background */
-      font-size: 0.7rem; /* INCREASED base font size */
+      background-color: #f8f9fa; /* Bootstrap's light gray background */
+      font-size: 1.05rem; /* REVISED base font size (slightly larger than default) */
       color: #212529; /* Default Bootstrap text color */
     }
 
     /* Custom Card Accent (Optional visual flair) */
     .card-accent-left {
-      border-left: 5px solid var(--bs-primary); /* Slightly thicker border */
+      border-left: 4px solid var(--bs-primary); /* Standard thickness */
     }
 
     /* Image Gallery Container Styling */
     .store-image-container {
         position: relative;
-        height: 24rem; /* INCREASED height for gallery */
+        height: 22rem; /* REVISED height */
         background-color: #e9ecef;
         border-radius: 0.375rem;
         overflow: hidden;
@@ -61,14 +61,14 @@
         position: absolute;
         left: 0;
         font-weight: bold;
-        font-size: 1.2em; /* Slightly larger bullet */
+        font-size: 1.1em; /* Standard bullet size */
         line-height: 1.2;
      }
      /* List Item Padding for Custom Bullet */
      .metadata-list li, .insights-list li {
-        padding-left: 1.4rem; /* INCREASED space for bullet */
+        padding-left: 1.3rem; /* REVISED space */
         position: relative;
-        margin-bottom: 0.5rem; /* INCREASED spacing */
+        margin-bottom: 0.4rem; /* Standard spacing */
      }
      /* Remove Default List Styling */
      .metadata-list ul, .insights-list ul, .list-unstyled {
@@ -80,20 +80,20 @@
     .chart-container {
        width: 100%;
        position: relative;
-       margin-bottom: 1.5rem; /* INCREASED space below chart */
-       padding: 0.75rem; /* Increased padding */
-       min-height: 350px; /* INCREASED minimum height */
-       height: 420px; /* INCREASED default height */
+       margin-bottom: 1.25rem; /* REVISED space below chart */
+       padding: 0.6rem; /* REVISED padding */
+       min-height: 340px; /* REVISED minimum height */
+       height: 390px; /* REVISED default height */
     }
     /* Specific Height for ABC Analysis Chart */
     .chart-container-abc {
-        min-height: 330px;
-        height: 330px; /* INCREASED height */
+        min-height: 310px;
+        height: 310px; /* REVISED height */
     }
     /* Specific Height for Correlation Chart */
      .chart-container-corr {
-        min-height: 300px;
-        height: 300px; /* INCREASED height */
+        min-height: 280px;
+        height: 280px; /* REVISED height */
     }
 
     /* Sticky Table Header Styling */
@@ -102,78 +102,94 @@
         top: 0;
         z-index: 10;
         background-color: #f8f9fa;
-        font-weight: 600; /* Ensure headers are bold */
+        font-weight: 600;
     }
     /* Container for Scrollable Tables */
     .table-responsive {
-        max-height: 400px; /* INCREASED max height */
+        max-height: 370px; /* REVISED max height */
         overflow-y: auto;
     }
 
-    /* Larger buttons */
-    .btn {
-        padding: 0.6rem 1.2rem; /* Increase padding for larger buttons */
-        font-size: 1rem; /* Adjust button font size if needed */
-    }
+    /* Standard buttons (no override needed if default size is okay now) */
+    /* .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    } */
 
   </style>
 </head>
 <body>
 
-  <!-- Main Container - Using container-xxl for maximum width within Bootstrap's standard grid -->
-  <!-- Increased responsive padding: py-4 (small screens) -> py-md-5 (medium and up) -->
-  <div class="container-xxl py-4 py-md-5">
+  <!-- Main Container - Using container-xxl for maximum width -->
+  <!-- REVISED padding: py-4 (all screens) -->
+  <div class="container-xxl py-4">
 
-    <!-- Main Grid Row - Uses Bootstrap's grid system with g-4 gutter (spacing) -->
-    <div class="row g-4">
+    <!-- Main Grid Row - INCREASED gutter to g-5 for more space -->
+    <div class="row g-5">
 
       <!-- Project Title Card - Spans full width (col-12) -->
       <div class="col-12">
         <div class="card text-white text-center shadow-lg" style="background: linear-gradient(to bottom right, #0dcaf0, #0d6efd);">
-          <!-- Increased padding (p-5) -->
-          <div class="card-body p-5">
+          <!-- REVISED padding (p-4 standard) -->
+          <div class="card-body p-4">
             <!-- IITM Logo -->
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png" alt="IIT Madras Logo" class="mb-4" style="height: 6rem; width: auto;"> <!-- Increased logo size -->
-            <!-- Main Title - Increased size to display-3 -->
-            <h1 class="card-title display-3 fw-bold mb-3">Optimizing Inventory and Operations for Sustainable Growth</h1>
-            <!-- Subtitle - Increased size to h2 -->
-            <p class="card-subtitle h2 fw-light mb-4">Jai Maa Jhandewali Store - BDM Capstone Project</p>
-            <!-- Student Info Box - Increased font size to fs-5 -->
-            <div class="bg-dark bg-opacity-25 px-4 py-3 rounded d-inline-block fs-5"> <!-- Increased padding & font size -->
-              <p class="mb-1"><span class="fw-semibold">Sumit Kumar</span> | Roll No: <span class="fw-semibold">22f2000848</span></p>
-              <p class="mb-0">Mail: <span class="fw-semibold">22f2000848@ds.study.iitm.ac.in</span></p>
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png" alt="IIT Madras Logo" class="mb-4" style="height: 5rem; width: auto;"> <!-- REVISED logo size -->
+            <!-- Main Title - REVISED size to display-5 -->
+            <h1 class="card-title display-5 fw-bold mb-3">Optimizing Inventory and Operations for Sustainable Growth</h1>
+            <!-- Subtitle - REVISED size to h3 -->
+            <p class="card-subtitle h3 fw-light mb-4">Jai Maa Jhandewali Store - BDM Capstone Project</p>
+            <!-- Student Info Box - REVISED font size to fs-6 (slightly larger than default) -->
+            <div class="bg-dark bg-opacity-25 px-3 py-2 rounded d-inline-block fs-6"> <!-- REVISED padding & font size -->
+              <!-- Line 1: Name and Roll Number -->
+              <p class="mb-2">
+                <span class="fw-semibold">Sumit Kumar</span> | Roll No: <span class="fw-semibold">22f2000848</span>
+              </p>
+              <!-- Line 2: Social/Repo Links -->
+              <div>
+                <!-- GitHub Link with Icon -->
+                <a href="https://github.com/repo-sumit/BDM_Project" target="_blank" rel="noopener noreferrer" class="text-white me-3" aria-label="GitHub Repository">
+                  <!-- Bootstrap GitHub Icon SVG (Size 22x22) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                  </svg>
+                </a>
+                <!-- LinkedIn Link with Icon -->
+                <a href="https://www.linkedin.com/in/in-sumit/" target="_blank" rel="noopener noreferrer" class="text-white" aria-label="LinkedIn Profile">
+                   <!-- Bootstrap LinkedIn Icon SVG (Size 22x22) -->
+                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                   </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <!-- End Project Title Card -->
 
-      <!-- Store Information Card - Takes half width on large screens (col-lg-6) -->
+      <!-- Store Information Card -->
       <div class="col-lg-6">
         <div class="card h-100 shadow-sm card-accent-left">
           <div class="card-header bg-primary bg-opacity-10 border-primary">
-             <!-- Header title - Increased size to h3 -->
-             <h2 class="h3 mb-0 text-primary fw-semibold">About Jai Maa Jhandewali Store</h2>
+             <!-- Header title - REVISED size to h4 -->
+             <h2 class="h4 mb-0 text-primary fw-semibold">About Jai Maa Jhandewali Store</h2>
           </div>
-          <!-- Increased padding (p-4) -->
+          <!-- REVISED padding (p-4) -->
           <div class="card-body p-4">
-            <!-- Image gallery container -->
             <div class="store-image-container mb-4"> <!-- Increased margin -->
                <img src="https://i.ibb.co/T3rRXHf/Screenshot-2025-04-22-080742.png" alt="Store Front" class="store-image active" id="storeImage1">
                <img src="https://i.ibb.co/35vY7zjV/Screenshot-2025-04-22-080939.png" alt="Store Interior" class="store-image" id="storeImage2">
                <img src="https://i.ibb.co/ZzwVnsck/Screenshot-2025-04-22-081125.png" alt="Authorization Letter" class="store-image" id="storeImage3">
             </div>
-            <!-- Image navigation buttons -->
             <div class="text-center mb-4">
-              <button onclick="changeStoreImage(-1)" class="btn btn-primary me-2">Previous</button> <!-- Larger button defined in CSS -->
-              <button onclick="changeStoreImage(1)" class="btn btn-primary">Next</button> <!-- Larger button defined in CSS -->
+              <button onclick="changeStoreImage(-1)" class="btn btn-primary btn-sm me-2">Previous</button> <!-- Using btn-sm now -->
+              <button onclick="changeStoreImage(1)" class="btn btn-primary btn-sm">Next</button> <!-- Using btn-sm now -->
             </div>
-            <!-- Store Overview Section -->
             <div class="insights-list">
-              <!-- Increased size to h4 -->
-              <h3 class="h4 fw-semibold text-dark mb-3">Store Overview:</h3>
-              <!-- Increased font size to fs-5 -->
-              <ul class="text-muted fs-5">
+              <!-- REVISED size to h5 -->
+              <h3 class="h5 fw-semibold text-dark mb-3">Store Overview:</h3>
+              <!-- REVISED font size to fs-6 (default slightly larger now) -->
+              <ul class="text-muted fs-6">
                 <li><strong>Type:</strong> Family-run B2C grocery store</li>
                 <li><strong>Location:</strong> VP Block, Pitampura, Delhi</li>
                 <li><strong>Owner:</strong> Mr. Satyam Prakash (Student)</li>
@@ -191,16 +207,16 @@
        <div class="col-lg-6">
          <div class="card h-100 shadow-sm card-accent-left">
            <div class="card-header bg-primary bg-opacity-10 border-primary">
-              <!-- Header title - Increased size to h3 -->
-              <h2 class="h3 mb-0 text-primary fw-semibold">Problem Statement & Background</h2>
+              <!-- Header title - REVISED size to h4 -->
+              <h2 class="h4 mb-0 text-primary fw-semibold">Problem Statement & Background</h2>
            </div>
-           <!-- Increased padding (p-4) -->
+           <!-- REVISED padding (p-4) -->
            <div class="card-body p-4 insights-list">
              <!-- Objectives Section -->
-             <!-- Increased size to h4 -->
-             <h3 class="h4 fw-semibold text-dark mb-3">Identified Objectives:</h3>
-             <!-- Increased bottom margin and font size (fs-5) -->
-             <ul class="text-muted mb-4 fs-5">
+             <!-- REVISED size to h5 -->
+             <h3 class="h5 fw-semibold text-dark mb-3">Identified Objectives:</h3>
+             <!-- REVISED bottom margin and font size (fs-6) -->
+             <ul class="text-muted mb-4 fs-6">
                <li>
                  <strong>Inventory Management Issues:</strong> Difficulty maintaining optimal stock, managing fluctuations for perishables/seasonal items, avoiding wastage/missed sales.
                </li>
@@ -212,12 +228,12 @@
                </li>
              </ul>
              <!-- Background Section -->
-             <!-- Increased size to h4 -->
-             <h3 class="h4 fw-semibold text-dark mt-4 mb-3">Problem Background:</h3>
-              <!-- Increased font size (fs-5) -->
-              <p class="text-muted mb-3 fs-5">The store handles diverse SKUs with varying shelf lives. The owner's academic commitments limit time for detailed inventory management, leading to overstocking or stockouts, especially for high-demand/seasonal items. Lack of automated systems worsens this.</p>
-              <p class="text-muted mb-3 fs-5">Operating from a single room attached to home creates significant space limits. Excess inventory stored in the house is inefficient. This restricts product range expansion and complicates stock handling.</p>
-              <p class="text-muted mb-0 fs-5">The family-run model faces scalability challenges due to potential inconsistencies and lack of professional systems (sales/inventory tracking). Competition from quick-commerce platforms necessitates exploring options like home delivery.</p>
+             <!-- REVISED size to h5 -->
+             <h3 class="h5 fw-semibold text-dark mt-4 mb-3">Problem Background:</h3>
+              <!-- REVISED font size (fs-6) -->
+              <p class="text-muted mb-3 fs-6">The store handles diverse SKUs with varying shelf lives. The owner's academic commitments limit time for detailed inventory management, leading to overstocking or stockouts, especially for high-demand/seasonal items. Lack of automated systems worsens this.</p>
+              <p class="text-muted mb-3 fs-6">Operating from a single room attached to home creates significant space limits. Excess inventory stored in the house is inefficient. This restricts product range expansion and complicates stock handling.</p>
+              <p class="text-muted mb-0 fs-6">The family-run model faces scalability challenges due to potential inconsistencies and lack of professional systems (sales/inventory tracking). Competition from quick-commerce platforms necessitates exploring options like home delivery.</p>
            </div>
          </div>
        </div>
@@ -227,20 +243,20 @@
        <div class="col-12">
          <div class="card shadow-sm card-accent-left">
             <div class="card-header bg-primary bg-opacity-10 border-primary">
-                <!-- Header title - Increased size to h3 -->
-                <h2 class="h3 mb-0 text-primary fw-semibold">Data Overview & Collection</h2>
+                <!-- Header title - REVISED size to h4 -->
+                <h2 class="h4 mb-0 text-primary fw-semibold">Data Overview & Collection</h2>
             </div>
-            <!-- Increased padding (p-4) -->
+            <!-- REVISED padding (p-4) -->
             <div class="card-body p-4">
                 <!-- Nested Row for metadata details -->
                 <div class="row g-4 metadata-list"> <!-- Increased gutter -->
                     <!-- Source & Scope Column -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="p-4 bg-light border rounded h-100"> <!-- Increased padding -->
-                            <!-- Sub-header - Increased size to h4 -->
-                            <h3 class="h4 fw-semibold text-primary-emphasis mb-3">Source & Scope</h3>
-                            <!-- Increased font size (fs-5) -->
-                            <ul class="text-muted fs-5">
+                        <div class="p-3 bg-light border rounded h-100"> <!-- Standard padding -->
+                            <!-- Sub-header - REVISED size to h5 -->
+                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Source & Scope</h3>
+                            <!-- REVISED font size (fs-6) -->
+                            <ul class="text-muted fs-6">
                                 <li><strong>Type:</strong> Primary Data</li>
                                 <li><strong>Source:</strong> Jai Maa Jhandewali Store</li>
                                 <li><strong>Collection:</strong> Record Digitization, Interviews</li>
@@ -250,11 +266,11 @@
                     </div>
                     <!-- Dataset Details Column -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="p-4 bg-light border rounded h-100"> <!-- Increased padding -->
-                            <!-- Sub-header - Increased size to h4 -->
-                            <h3 class="h4 fw-semibold text-primary-emphasis mb-3">Dataset Details</h3>
-                            <!-- Increased font size (fs-5) -->
-                            <ul class="text-muted fs-5">
+                        <div class="p-3 bg-light border rounded h-100">
+                            <!-- Sub-header - REVISED size to h5 -->
+                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Dataset Details</h3>
+                            <!-- REVISED font size (fs-6) -->
+                            <ul class="text-muted fs-6">
                                 <li><strong>Format:</strong> Cleaned, daily aggregated</li>
                                 <li><strong>Records:</strong> 398 days</li>
                                 <li><strong>Columns:</strong> 14 (Date + 13 SKUs)</li>
@@ -264,11 +280,11 @@
                     </div>
                     <!-- Key Categories Column -->
                     <div class="col-lg-4 col-md-12">
-                        <div class="p-4 bg-light border rounded h-100"> <!-- Increased padding -->
-                            <!-- Sub-header - Increased size to h4 -->
-                            <h3 class="h4 fw-semibold text-primary-emphasis mb-3">Key Categories</h3>
-                             <!-- Increased font size (fs-5) -->
-                            <ul class="text-muted fs-5">
+                        <div class="p-3 bg-light border rounded h-100">
+                            <!-- Sub-header - REVISED size to h5 -->
+                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Key Categories</h3>
+                             <!-- REVISED font size (fs-6) -->
+                            <ul class="text-muted fs-6">
                                 <li><strong>Dairy:</strong> Milk, Butter</li>
                                 <li><strong>Groceries:</strong> Rice, Wheat, Pulse...</li>
                                 <li><strong>FMCG:</strong> Bread, Soft Drinks, Chips...</li>
@@ -286,56 +302,56 @@
        <div class="col-12">
            <div class="card shadow-sm card-accent-left">
              <div class="card-header bg-success bg-opacity-10 border-success">
-                 <!-- Header title - Increased size to h3 -->
-                <h2 class="h3 mb-0 text-success fw-semibold">Analysis Methods Used</h2>
+                 <!-- Header title - REVISED size to h4 -->
+                <h2 class="h4 mb-0 text-success fw-semibold">Analysis Methods Used</h2>
              </div>
-             <!-- Increased padding (p-4) -->
+             <!-- REVISED padding (p-4) -->
              <div class="card-body p-4">
                <!-- Nested row for methods -->
                <div class="row g-4"> <!-- Increased gutter -->
                    <!-- Descriptive Stats Column -->
                    <div class="col-lg col-md-6">
-                       <div class="analysis-method p-4 bg-success-subtle border border-success-subtle rounded h-100"> <!-- Increased padding -->
-                           <!-- Sub-header - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-success-emphasis mb-2">1. Descriptive Stats</h3>
-                           <!-- Increased font size (fs-5) -->
-                           <p class="text-muted mb-0 fs-5">Calculated stats (Mean, Median, StdDev) to understand SKU sales patterns.</p>
+                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100"> <!-- Standard padding -->
+                           <!-- Sub-header - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">1. Descriptive Stats</h3>
+                           <!-- REVISED font size (fs-6) -->
+                           <p class="text-muted mb-0 fs-6">Calculated stats (Mean, Median, StdDev) to understand SKU sales patterns.</p>
                        </div>
                    </div>
                    <!-- Trend Analysis Column -->
                    <div class="col-lg col-md-6">
-                       <div class="analysis-method p-4 bg-success-subtle border border-success-subtle rounded h-100">
-                           <!-- Sub-header - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-success-emphasis mb-2">2. Trend Analysis</h3>
-                            <!-- Increased font size (fs-5) -->
-                           <p class="text-muted mb-0 fs-5">Identified seasonal/weekly patterns using Box Plots & Line Charts.</p>
+                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
+                           <!-- Sub-header - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">2. Trend Analysis</h3>
+                            <!-- REVISED font size (fs-6) -->
+                           <p class="text-muted mb-0 fs-6">Identified seasonal/weekly patterns using Box Plots & Line Charts.</p>
                        </div>
                    </div>
                    <!-- ABC Segmentation Column -->
                    <div class="col-lg col-md-6">
-                       <div class="analysis-method p-4 bg-success-subtle border border-success-subtle rounded h-100">
-                           <!-- Sub-header - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-success-emphasis mb-2">3. ABC Segmentation</h3>
-                            <!-- Increased font size (fs-5) -->
-                           <p class="text-muted mb-0 fs-5">Classified products (A, B, C) by sales volume contribution.</p>
+                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
+                           <!-- Sub-header - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">3. ABC Segmentation</h3>
+                            <!-- REVISED font size (fs-6) -->
+                           <p class="text-muted mb-0 fs-6">Classified products (A, B, C) by sales volume contribution.</p>
                        </div>
                    </div>
                    <!-- Correlation Analysis Column -->
                    <div class="col-lg col-md-6">
-                       <div class="analysis-method p-4 bg-success-subtle border border-success-subtle rounded h-100">
-                           <!-- Sub-header - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-success-emphasis mb-2">4. Correlation Analysis</h3>
-                            <!-- Increased font size (fs-5) -->
-                           <p class="text-muted mb-0 fs-5">Used Pearson Correlation & Heatmap for category relationships.</p>
+                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
+                           <!-- Sub-header - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">4. Correlation Analysis</h3>
+                            <!-- REVISED font size (fs-6) -->
+                           <p class="text-muted mb-0 fs-6">Used Pearson Correlation & Heatmap for category relationships.</p>
                        </div>
                    </div>
                    <!-- Sales Prediction Column -->
                     <div class="col-lg col-md-6">
-                       <div class="analysis-method p-4 bg-success-subtle border border-success-subtle rounded h-100">
-                           <!-- Sub-header - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-success-emphasis mb-2">5. Sales Prediction (ML)</h3>
-                            <!-- Increased font size (fs-5) -->
-                           <p class="text-muted mb-0 fs-5">Applied Linear Regression (Milk example) to show forecast feasibility.</p>
+                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
+                           <!-- Sub-header - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">5. Sales Prediction (ML)</h3>
+                            <!-- REVISED font size (fs-6) -->
+                           <p class="text-muted mb-0 fs-6">Applied Linear Regression (Milk example) to show forecast feasibility.</p>
                        </div>
                    </div>
                </div>
@@ -348,10 +364,10 @@
        <div class="col-12">
            <div class="card shadow-sm">
              <div class="card-header bg-info bg-opacity-10 border-info">
-                 <!-- Header title - Increased size to h3 -->
-                <h2 class="h3 mb-0 text-info fw-semibold">Results & Findings</h2>
+                 <!-- Header title - REVISED size to h4 -->
+                <h2 class="h4 mb-0 text-info fw-semibold">Results & Findings</h2>
              </div>
-             <!-- Increased padding (p-4) -->
+             <!-- REVISED padding (p-4) -->
              <div class="card-body p-4">
                 <!-- Nested row for charts -->
                 <div class="row g-4">
@@ -359,22 +375,22 @@
                   <!-- Monthly Sales Bar Chart Card -->
                    <div class="col-md-6">
                      <div class="card h-100 shadow-sm">
-                        <!-- Increased padding (p-4) -->
+                        <!-- REVISED padding (p-4) -->
                         <div class="card-body d-flex flex-column p-4">
-                           <!-- Chart title - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-center text-dark mb-2">Average Monthly Sales Distribution</h3>
+                           <!-- Chart title - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Average Monthly Sales Distribution</h3>
                            <p class="text-center text-muted mb-3 fs-6">(Aggregated Daily Units - Placeholder Data)</p>
                            <!-- Chart container -->
                            <div class="chart-container flex-grow-1">
                               <canvas id="monthlySalesChart"></canvas>
                            </div>
                            <!-- Insights section -->
-                           <div class="insights-list mt-4"> <!-- Increased margin -->
-                             <!-- Increased font size (fs-5) -->
-                             <ul class="list-unstyled mb-0 fs-5">
-                               <li>▸ Peak Average Sales: <span class="badge fs-6 bg-danger-subtle text-danger-emphasis">Oct & Dec</span></li> <!-- Added fs-6 to badge -->
-                               <li>▸ Summer Peak: <span class="badge fs-6 bg-warning-subtle text-warning-emphasis">May-July</span></li>
-                               <li>▸ Lowest Average Sales: <span class="badge fs-6 bg-secondary-subtle text-secondary-emphasis">Jan & Feb</span></li>
+                           <div class="insights-list mt-3"> <!-- Standard margin -->
+                             <!-- REVISED font size (fs-6) -->
+                             <ul class="list-unstyled mb-0 fs-6">
+                               <li>▸ Peak Average Sales: <span class="badge bg-danger-subtle text-danger-emphasis">Oct & Dec</span></li>
+                               <li>▸ Summer Peak: <span class="badge bg-warning-subtle text-warning-emphasis">May-July</span></li>
+                               <li>▸ Lowest Average Sales: <span class="badge bg-secondary-subtle text-secondary-emphasis">Jan & Feb</span></li>
                                <li class="mt-2 fst-italic">(Note: Bar chart shows averages)</li>
                              </ul>
                            </div>
@@ -387,20 +403,20 @@
                    <div class="col-md-6">
                      <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column p-4">
-                           <!-- Chart title - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-center text-dark mb-2">Monthly Sales Trend by Category</h3>
+                           <!-- Chart title - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Monthly Sales Trend by Category</h3>
                            <p class="text-center text-muted mb-3 fs-6">(Placeholder Data)</p>
                            <!-- Chart container -->
                            <div class="chart-container flex-grow-1">
                                <canvas id="categoryTrendChart"></canvas>
                            </div>
                            <!-- Insights section -->
-                           <div class="insights-list mt-4"> <!-- Increased margin -->
-                             <!-- Increased font size (fs-5) -->
-                             <ul class="list-unstyled mb-0 fs-5">
-                               <li>▸ <span class="badge fs-6 bg-danger-subtle text-danger-emphasis">FMCG</span> leads sales volume.</li>
-                               <li>▸ <span class="badge fs-6 bg-primary-subtle text-primary-emphasis">Dairy</span> consistently second.</li>
-                               <li>▸ <span class="badge fs-6 bg-success-subtle text-success-emphasis">Groceries</span> lowest volume.</li>
+                           <div class="insights-list mt-3"> <!-- Standard margin -->
+                             <!-- REVISED font size (fs-6) -->
+                             <ul class="list-unstyled mb-0 fs-6">
+                               <li>▸ <span class="badge bg-danger-subtle text-danger-emphasis">FMCG</span> leads sales volume.</li>
+                               <li>▸ <span class="badge bg-primary-subtle text-primary-emphasis">Dairy</span> consistently second.</li>
+                               <li>▸ <span class="badge bg-success-subtle text-success-emphasis">Groceries</span> lowest volume.</li>
                                <li>▸ Seasonal peak for FMCG in Summer (May-July).</li>
                              </ul>
                            </div>
@@ -413,20 +429,20 @@
                    <div class="col-md-6">
                      <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column p-4">
-                            <!-- Chart title - Increased size to h4 -->
-                            <h3 class="h4 fw-semibold text-center text-dark mb-2">ABC Analysis (by Volume Contribution)</h3>
+                            <!-- Chart title - REVISED size to h5 -->
+                            <h3 class="h5 fw-semibold text-center text-dark mb-2">ABC Analysis (by Volume Contribution)</h3>
                             <p class="text-center text-muted mb-3 fs-6">(Placeholder Data)</p>
                             <!-- Chart container with custom height -->
                             <div class="chart-container-abc flex-grow-1">
                                <canvas id="abcChart"></canvas>
                             </div>
                             <!-- Insights section -->
-                            <div class="insights-list mt-4"> <!-- Increased margin -->
-                              <!-- Increased font size (fs-5) -->
-                              <ul class="list-unstyled mb-0 fs-5">
-                                <li><strong>A (~76%):</strong> Milk, Bread, Chips... <span class="badge fs-6 bg-success-subtle text-success-emphasis">Prioritize</span></li>
-                                <li><strong>B (~17%):</strong> Pulse, Sugar, Butter... <span class="badge fs-6 bg-warning-subtle text-warning-emphasis">Monitor</span></li>
-                                <li><strong>C (~7%):</strong> Rice, Spices, Salt <span class="badge fs-6 bg-danger-subtle text-danger-emphasis">Optimize</span></li>
+                            <div class="insights-list mt-3"> <!-- Standard margin -->
+                              <!-- REVISED font size (fs-6) -->
+                              <ul class="list-unstyled mb-0 fs-6">
+                                <li><strong>A (~76%):</strong> Milk, Bread, Chips... <span class="badge bg-success-subtle text-success-emphasis">Prioritize</span></li>
+                                <li><strong>B (~17%):</strong> Pulse, Sugar, Butter... <span class="badge bg-warning-subtle text-warning-emphasis">Monitor</span></li>
+                                <li><strong>C (~7%):</strong> Rice, Spices, Salt <span class="badge bg-danger-subtle text-danger-emphasis">Optimize</span></li>
                               </ul>
                             </div>
                         </div>
@@ -438,25 +454,25 @@
                     <div class="col-md-6">
                       <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column p-4">
-                           <!-- Chart title - Increased size to h4 -->
-                           <h3 class="h4 fw-semibold text-center text-dark mb-2">Key Category Sales Correlations</h3>
+                           <!-- Chart title - REVISED size to h5 -->
+                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Key Category Sales Correlations</h3>
                            <p class="text-center text-muted mb-3 fs-6">(Placeholder Data - Replaced Heatmap)</p>
                            <!-- Chart container with custom height -->
                            <div class="chart-container-corr flex-grow-1">
                                <canvas id="correlationChart"></canvas>
                            </div>
                            <!-- Insights section -->
-                           <div class="insights-list mt-4"> <!-- Increased margin -->
-                             <!-- Increased size to h5 -->
-                             <h4 class="h5 fw-medium mb-2">Key Correlations:</h4>
-                             <!-- Increased font size (fs-5) -->
-                             <ul class="list-unstyled mb-2 fs-5">
+                           <div class="insights-list mt-3"> <!-- Standard margin -->
+                             <!-- REVISED size to h6 -->
+                             <h4 class="h6 fw-medium mb-2">Key Correlations:</h4>
+                             <!-- REVISED font size (fs-6) -->
+                             <ul class="list-unstyled mb-2 fs-6">
                                <li>FMCG & Groceries: <span class="fw-semibold text-success">~0.65</span></li>
                                <li>FMCG & Dairy: <span class="fw-semibold text-primary">~0.61</span></li>
                                <li>Dairy & Groceries: <span class="fw-semibold text-danger">~0.43</span></li>
                              </ul>
-                             <!-- Increased font size (fs-5) -->
-                             <p class="mb-0 fs-5">Suggests bundling/placement opportunities.</p>
+                             <!-- REVISED font size (fs-6) -->
+                             <p class="mb-0 fs-6">Suggests bundling/placement opportunities.</p>
                            </div>
                         </div>
                       </div>
@@ -467,20 +483,20 @@
                     <div class="col-12">
                        <div class="card shadow-sm">
                            <div class="card-body d-flex flex-column p-4">
-                               <!-- Chart title - Increased size to h4 -->
-                               <h3 class="h4 fw-semibold text-center text-dark mb-2">Sales Prediction Example: Milk</h3>
-                               <p class="text-center text-muted mb-3 fs-6">(Linear Regression vs. Actual Monthly)</p>
+                               <!-- Chart title - REVISED size to h5 -->
+                               <h3 class="h5 fw-semibold text-center text-dark mb-2">Sales Prediction Example: Milk</h3>
+                               <p class="text-center text-muted mb-3 fs-6">(Linear Regression vs. Actual Monthly - Placeholder Data)</p>
                                <!-- Chart container -->
                                <div class="chart-container flex-grow-1">
                                   <canvas id="milkPredictionChart"></canvas>
                                </div>
                                <!-- Insights section -->
-                               <div class="insights-list mt-4"> <!-- Increased margin -->
-                                 <!-- Increased font size (fs-5) -->
-                                 <ul class="list-unstyled mb-0 fs-5">
+                               <div class="insights-list mt-3"> <!-- Standard margin -->
+                                 <!-- REVISED font size (fs-6) -->
+                                 <ul class="list-unstyled mb-0 fs-6">
                                    <li>▸ Model captures general trend, useful for baseline planning.</li>
                                    <li>▸ Misses volatility; advanced models (ARIMA) needed for accuracy.</li>
-                                   <li>▸ <span class="badge fs-6 bg-danger-subtle text-danger-emphasis">Validation (RMSE) required before use.</span></li>
+                                   <li>▸ <span class="badge bg-danger-subtle text-danger-emphasis">Validation (RMSE) required before use.</span></li>
                                  </ul>
                                </div>
                            </div>
@@ -497,32 +513,32 @@
        <div class="col-12">
          <div class="card shadow-sm card-accent-left">
            <div class="card-header bg-warning bg-opacity-10 border-warning">
-             <!-- Header title - Increased size to h3 -->
-             <h2 class="h3 mb-0 text-warning fw-semibold">Recommendations</h2>
+             <!-- Header title - REVISED size to h4 -->
+             <h2 class="h4 mb-0 text-warning fw-semibold">Recommendations</h2>
            </div>
-           <!-- Increased padding (p-4) -->
+           <!-- REVISED padding (p-4) -->
            <div class="card-body p-4">
              <!-- Bootstrap Tabs Navigation -->
              <ul class="nav nav-tabs nav-fill mb-4" id="recommendationTabs" role="tablist">
                <!-- Inventory Tab Link -->
                <li class="nav-item" role="presentation">
-                 <!-- Increased font size (fs-5) -->
-                 <button class="nav-link active fs-5" id="recInv-tab" data-bs-toggle="tab" data-bs-target="#recInv-pane" type="button" role="tab" aria-controls="recInv-pane" aria-selected="true">Inventory</button>
+                 <!-- REVISED font size (fs-6) -->
+                 <button class="nav-link active fs-6" id="recInv-tab" data-bs-toggle="tab" data-bs-target="#recInv-pane" type="button" role="tab" aria-controls="recInv-pane" aria-selected="true">Inventory</button>
                </li>
                <!-- Space/Layout Tab Link -->
                <li class="nav-item" role="presentation">
-                  <!-- Increased font size (fs-5) -->
-                 <button class="nav-link fs-5" id="recSpace-tab" data-bs-toggle="tab" data-bs-target="#recSpace-pane" type="button" role="tab" aria-controls="recSpace-pane" aria-selected="false">Space/Layout</button>
+                  <!-- REVISED font size (fs-6) -->
+                 <button class="nav-link fs-6" id="recSpace-tab" data-bs-toggle="tab" data-bs-target="#recSpace-pane" type="button" role="tab" aria-controls="recSpace-pane" aria-selected="false">Space/Layout</button>
                </li>
                <!-- Growth Tab Link -->
                <li class="nav-item" role="presentation">
-                  <!-- Increased font size (fs-5) -->
-                 <button class="nav-link fs-5" id="recGrowth-tab" data-bs-toggle="tab" data-bs-target="#recGrowth-pane" type="button" role="tab" aria-controls="recGrowth-pane" aria-selected="false">Growth</button>
+                  <!-- REVISED font size (fs-6) -->
+                 <button class="nav-link fs-6" id="recGrowth-tab" data-bs-toggle="tab" data-bs-target="#recGrowth-pane" type="button" role="tab" aria-controls="recGrowth-pane" aria-selected="false">Growth</button>
                </li>
                <!-- Impact Tab Link -->
                <li class="nav-item" role="presentation">
-                  <!-- Increased font size (fs-5) -->
-                 <button class="nav-link fs-5" id="recImpact-tab" data-bs-toggle="tab" data-bs-target="#recImpact-pane" type="button" role="tab" aria-controls="recImpact-pane" aria-selected="false">Impact</button>
+                  <!-- REVISED font size (fs-6) -->
+                 <button class="nav-link fs-6" id="recImpact-tab" data-bs-toggle="tab" data-bs-target="#recImpact-pane" type="button" role="tab" aria-controls="recImpact-pane" aria-selected="false">Impact</button>
                </li>
              </ul>
              <!-- Bootstrap Tab Content -->
@@ -530,11 +546,11 @@
 
                <!-- Inventory Tab Pane -->
                <div class="tab-pane fade show active" id="recInv-pane" role="tabpanel" aria-labelledby="recInv-tab" tabindex="0">
-                 <!-- Sub-header - Increased size to h4 -->
-                 <h3 class="h4 fw-semibold text-dark mb-3">Optimizing Inventory:</h3>
+                 <!-- Sub-header - REVISED size to h5 -->
+                 <h3 class="h5 fw-semibold text-dark mb-3">Optimizing Inventory:</h3>
                  <div class="table-responsive">
-                   <!-- Recommendation Table - Increased font size (fs-5) -->
-                   <table class="table table-striped table-hover table-bordered fs-5 align-middle"> <!-- Added align-middle -->
+                   <!-- Recommendation Table - REVISED font size (fs-6) -->
+                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
                       <thead class="table-light">
                          <tr>
                            <th scope="col">Recommendation</th>
@@ -556,11 +572,11 @@
 
                <!-- Space/Layout Tab Pane -->
                <div class="tab-pane fade" id="recSpace-pane" role="tabpanel" aria-labelledby="recSpace-tab" tabindex="0">
-                 <!-- Sub-header - Increased size to h4 -->
-                 <h3 class="h4 fw-semibold text-dark mb-3">Addressing Space & Layout:</h3>
+                 <!-- Sub-header - REVISED size to h5 -->
+                 <h3 class="h5 fw-semibold text-dark mb-3">Addressing Space & Layout:</h3>
                  <div class="table-responsive">
-                    <!-- Recommendation Table - Increased font size (fs-5) -->
-                   <table class="table table-striped table-hover table-bordered fs-5 align-middle">
+                    <!-- Recommendation Table - REVISED font size (fs-6) -->
+                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
                       <thead class="table-light">
                          <tr>
                            <th scope="col">Recommendation</th>
@@ -581,11 +597,11 @@
 
                <!-- Growth Tab Pane -->
                <div class="tab-pane fade" id="recGrowth-pane" role="tabpanel" aria-labelledby="recGrowth-tab" tabindex="0">
-                  <!-- Sub-header - Increased size to h4 -->
-                 <h3 class="h4 fw-semibold text-dark mb-3">Enhancing Business Growth:</h3>
+                  <!-- Sub-header - REVISED size to h5 -->
+                 <h3 class="h5 fw-semibold text-dark mb-3">Enhancing Business Growth:</h3>
                  <div class="table-responsive">
-                    <!-- Recommendation Table - Increased font size (fs-5) -->
-                   <table class="table table-striped table-hover table-bordered fs-5 align-middle">
+                    <!-- Recommendation Table - REVISED font size (fs-6) -->
+                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
                      <thead class="table-light">
                         <tr>
                            <th scope="col">Recommendation</th>
@@ -607,24 +623,24 @@
 
                <!-- Impact Tab Pane -->
                <div class="tab-pane fade" id="recImpact-pane" role="tabpanel" aria-labelledby="recImpact-tab" tabindex="0">
-                  <!-- Sub-header - Increased size to h4 -->
-                 <h3 class="h4 fw-semibold text-dark mb-4">Projected Benefits:</h3>
+                  <!-- Sub-header - REVISED size to h5 -->
+                 <h3 class="h5 fw-semibold text-dark mb-4">Projected Benefits:</h3>
                  <!-- Row for impact categories -->
                  <div class="row g-4"> <!-- Increased gutter -->
                    <!-- Financial Impact Column -->
                    <div class="col-md-4">
                      <div class="card h-100 bg-success-subtle border-success-subtle shadow-sm">
-                        <!-- Increased padding (p-4) -->
+                        <!-- REVISED padding (p-4) -->
                        <div class="card-body p-4">
-                         <!-- Impact Category Title - Increased size to h4 -->
-                         <h4 class="h4 fw-semibold text-success-emphasis mb-3 d-flex align-items-center">
-                           <!-- Increased icon size -->
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                         <!-- Impact Category Title - REVISED size to h5 -->
+                         <h4 class="h5 fw-semibold text-success-emphasis mb-3 d-flex align-items-center">
+                           <!-- Standard icon size -->
+                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                            </svg> Financial
                          </h4>
-                          <!-- Increased font size (fs-5) -->
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-5">
+                          <!-- REVISED font size (fs-6) -->
+                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
                            <li>▸ Profit Margin Increase</li>
                            <li>▸ Reduced Wastage Costs</li>
                            <li>▸ Improved Cash Flow</li>
@@ -637,14 +653,14 @@
                    <div class="col-md-4">
                      <div class="card h-100 bg-info-subtle border-info-subtle shadow-sm">
                        <div class="card-body p-4">
-                         <!-- Impact Category Title - Increased size to h4 -->
-                         <h4 class="h4 fw-semibold text-info-emphasis mb-3 d-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                         <!-- Impact Category Title - REVISED size to h5 -->
+                         <h4 class="h5 fw-semibold text-info-emphasis mb-3 d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                            </svg> Operational
                          </h4>
-                          <!-- Increased font size (fs-5) -->
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-5">
+                          <!-- REVISED font size (fs-6) -->
+                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
                            <li>▸ Fewer Stockouts</li>
                            <li>▸ Optimized Inventory/Space</li>
                            <li>▸ Streamlined Processes</li>
@@ -657,14 +673,14 @@
                    <div class="col-md-4">
                      <div class="card h-100 bg-warning-subtle border-warning-subtle shadow-sm">
                        <div class="card-body p-4">
-                           <!-- Impact Category Title - Increased size to h4 -->
-                          <h4 class="h4 fw-semibold text-warning-emphasis mb-3 d-flex align-items-center">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                           <!-- Impact Category Title - REVISED size to h5 -->
+                          <h4 class="h5 fw-semibold text-warning-emphasis mb-3 d-flex align-items-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                            </svg> Strategic
                          </h4>
-                          <!-- Increased font size (fs-5) -->
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-5">
+                          <!-- REVISED font size (fs-6) -->
+                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
                            <li>▸ Enhanced Customer Satisfaction</li>
                            <li>▸ Improved Competitiveness</li>
                            <li>▸ Sustainable Growth Path</li>
@@ -722,7 +738,7 @@
            return null;
         }
 
-      // --- Default Chart Options - INCREASED FONT SIZES ---
+      // --- Default Chart Options - REVISED FONT SIZES (Slightly Smaller) ---
       const defaultOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -730,48 +746,48 @@
             legend: {
                 position: 'top',
                  labels: {
-                     font: { size: 14 }, // INCREASED Legend font size
-                     boxWidth: 18, // Increased box width
-                     padding: 15, // Increased padding
+                     font: { size: 12 }, // REVISED Legend font size
+                     boxWidth: 15,
+                     padding: 12,
                      color: '#495057'
                  }
             },
             tooltip: {
                 mode: 'index',
                 intersect: false,
-                backgroundColor: 'rgba(0, 0, 0, 0.85)', // Slightly darker tooltip
-                titleFont: { size: 14 }, // INCREASED Tooltip title font size
-                bodyFont: { size: 13 }, // INCREASED Tooltip body font size
-                padding: 14 // Increased padding
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleFont: { size: 13 }, // REVISED Tooltip title font size
+                bodyFont: { size: 12 }, // REVISED Tooltip body font size
+                padding: 12
             },
             title: {
                 display: false,
-                font: { size: 18 }, // Increased default title size if shown
+                font: { size: 16 }, // REVISED default title size
                 color: '#212529'
             }
         },
         scales: {
             x: {
                 ticks: {
-                    font: { size: 12 }, // INCREASED X-axis label font size
+                    font: { size: 11 }, // REVISED X-axis label font size
                     color: '#6c757d',
                     autoSkip: true,
                     maxRotation: 45,
                     minRotation: 0
                 },
-                title: { // Example for adding axis title default (if needed)
+                title: { // Keep axis titles enabled
                     display: true,
-                    font: { size: 13 }, // INCREASED Axis title font size
+                    font: { size: 12 }, // REVISED Axis title font size
                     color: '#495057'
                 },
                 grid: { display: false }
             },
             y: {
                 beginAtZero: true,
-                ticks: { font: { size: 12 }, color: '#6c757d' }, // INCREASED Y-axis label font size
+                ticks: { font: { size: 11 }, color: '#6c757d' }, // REVISED Y-axis label font size
                 title: {
                     display: true,
-                    font: { size: 13 }, // INCREASED Axis title font size
+                    font: { size: 12 }, // REVISED Axis title font size
                     color: '#495057'
                 },
                 grid: { color: '#dee2e6' }
@@ -830,24 +846,27 @@
          // --- End Image Gallery Initialization ---
 
         // --- Get Bootstrap Theme Colors ---
+        // (Using const for colors as they don't change after page load)
         const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-primary').trim() || '#0d6efd';
         const successColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-success').trim() || '#198754';
         const warningColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-warning').trim() || '#ffc107';
         const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-danger').trim() || '#dc3545';
         const infoColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-info').trim() || '#0dcaf0';
+        const purpleColor = '#6f42c1'; // Bootstrap purple variable
+        const purpleColorTransparent = 'rgba(111, 66, 193, 0.7)'; // Purple with transparency
         // --- End Bootstrap Color Fetching ---
 
 
-        // --- Create Chart Instances (Using Updated Default Font Sizes) ---
+        // --- Create Chart Instances (Using Revised Default Font Sizes) ---
 
-        // Chart 1: Monthly Sales Distribution (Bar Chart)
+        // Chart 1: Monthly Sales Distribution (Bar Chart) - CHANGED TO PURPLE
         createChart('monthlySalesChart', 'bar', {
             labels: monthLabels,
             datasets: [{
                 label: 'Average Daily Units Sold',
                 data: monthAvgSalesData,
-                backgroundColor: 'rgba(13, 110, 253, 0.7)',
-                borderColor: primaryColor,
+                backgroundColor: purpleColorTransparent, // CHANGED color
+                borderColor: purpleColor, // CHANGED color
                 borderWidth: 1
             }]
         }, {
@@ -907,8 +926,7 @@
              plugins: { legend: { display: false } },
              scales: {
                  x: { title: { text: 'Correlation Coefficient' }, min: 0, max: 1 },
-                 // Y-axis title is less common for horizontal bars with descriptive labels
-                 y: { title: { display: false }, ticks: { font: { size: 12 }} } // Increased tick font size slightly
+                 y: { title: { display: false }, ticks: { font: { size: 11 }} } // Kept Y ticks slightly smaller
              }
         });
 
