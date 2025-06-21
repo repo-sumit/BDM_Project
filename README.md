@@ -18,7 +18,7 @@
 | **Store Type**     | 🛒 Family-run B2C Grocery                   |
 | **Owner**          | Mr. Satyam Prakash                          |
 | **Time Period**    | 📅 Jan 2024 – Jan 2025                      |
-| **Team Member**    | 👤 Sumit Kumar (`22f2000848@ds.study.iitm.ac.in`) |
+| **Team Member**    | 👤 Sumit (`22f2000848@ds.study.iitm.ac.in`) |
 
 ---
 
