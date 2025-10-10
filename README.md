@@ -55,7 +55,7 @@
 
 ## 📊 Visual Insights
 
-| 📌 Insight                         | 🖼️ Charts                                                 |
+| 📌 Insight Type                        | 🖼️ Charts                                                 |
 |-----------------------------------|-------------------------------------------------------------------|
 | Monthly Sales Distribution        | ![Sales Bar](https://i.ibb.co/vvgmkBBK/Screenshot-2025-04-22-074654.png)|
 | Category Trend Line Chart         | ![Trend Line](https://i.ibb.co/4ZFgPwMQ/Screenshot-2025-04-22-074936.png)  |
