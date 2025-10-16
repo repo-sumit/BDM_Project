@@ -1,884 +1,2002 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Meta tags for character set and responsive viewport -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jai Maa Jhandewali Store - BDM Capstone Dashboard (Revised)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BDM Capstone Project</title>
 
-  <!-- Bootstrap 5 CSS -->
-  <!-- Fetches the Bootstrap stylesheet for layout, components, and utilities -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png">
+    <link rel="shortcut icon" type="image/png"
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png">
+    <link rel="apple-touch-icon"
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png">
 
-  <!-- Chart.js CDN -->
-  <!-- Core Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  <!-- Date Adapter for Chart.js (required for time scales) -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Custom CSS Styles -->
-  <style>
-    /* Base body styling */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font stack */
-      background-color: #f8f9fa; /* Bootstrap's light gray background */
-      font-size: 1.05rem; /* REVISED base font size (slightly larger than default) */
-      color: #212529; /* Default Bootstrap text color */
-    }
+    <!-- Tailwind config: preserve your theme options -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#f0f9ff",
+                            100: "#e0f2fe",
+                            200: "#bae6fd",
+                            300: "#7dd3fc",
+                            400: "#38bdf8",
+                            500: "#0ea5e9",
+                            600: "#0284c7",
+                            700: "#0369a1",
+                            800: "#075985",
+                            900: "#0c4a6e"
+                        },
+                        dark: {
+                            50: "#f9fafb",
+                            100: "#f3f4f6",
+                            200: "#e5e7eb",
+                            300: "#d1d5db",
+                            400: "#9ca3af",
+                            500: "#6b7280",
+                            600: "#4b5563",
+                            700: "#374151",
+                            800: "#1f2937",
+                            900: "#111827"
+                        }
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(2,132,199,.15)",
+                        'dark-soft': "0 10px 30px rgba(0,0,0,.3)"
+                    }
+                }
+            }
+        }
+    </script>
 
-    /* Custom Card Accent (Optional visual flair) */
-    .card-accent-left {
-      border-left: 4px solid var(--bs-primary); /* Standard thickness */
-    }
+    <!-- Chart.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
-    /* Image Gallery Container Styling */
-    .store-image-container {
-        position: relative;
-        height: 22rem; /* REVISED height */
-        background-color: #e9ecef;
-        border-radius: 0.375rem;
-        overflow: hidden;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,.06);
-    }
-    /* Individual Store Image Styling */
-    .store-image {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        opacity: 0;
-        transition: opacity 0.7s ease-in-out;
-        object-fit: contain;
-    }
-    /* Active (Visible) Store Image */
-    .store-image.active {
-        opacity: 1;
-    }
+    <!-- Chart.js Matrix Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@latest/dist/chartjs-chart-matrix.min.js"></script>
 
-    /* Custom List Bullet Styling */
-     .metadata-list li::before, .insights-list li::before {
-        content: '▹';
-        color: var(--bs-primary);
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-        font-size: 1.1em; /* Standard bullet size */
-        line-height: 1.2;
-     }
-     /* List Item Padding for Custom Bullet */
-     .metadata-list li, .insights-list li {
-        padding-left: 1.3rem; /* REVISED space */
-        position: relative;
-        margin-bottom: 0.4rem; /* Standard spacing */
-     }
-     /* Remove Default List Styling */
-     .metadata-list ul, .insights-list ul, .list-unstyled {
-         list-style: none;
-         padding-left: 0;
-     }
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    /* Chart Container Base Styling */
-    .chart-container {
-       width: 100%;
-       position: relative;
-       margin-bottom: 1.25rem; /* REVISED space below chart */
-       padding: 0.6rem; /* REVISED padding */
-       min-height: 340px; /* REVISED minimum height */
-       height: 390px; /* REVISED default height */
-    }
-    /* Specific Height for Pie Chart (Now uses default chart container) */
-    /* Removed .chart-container-abc */
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Specific Height for Correlation Chart */
-     .chart-container-corr {
-        min-height: 280px;
-        height: 280px; /* REVISED height */
-    }
+        .dark {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
 
-    /* Sticky Table Header Styling */
-    .table th {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background-color: #f8f9fa;
-        font-weight: 600;
-    }
-    /* Container for Scrollable Tables */
-    .table-responsive {
-        max-height: 370px; /* REVISED max height */
-        overflow-y: auto;
-    }
+        .dark .card {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
 
-    /* Header social links styling */
-    .social-link {
-        text-decoration: none; /* Remove underline from links */
-        display: inline-flex; /* Align icon and text nicely */
-        align-items: center; /* Vertically center icon and text */
-    }
-    .social-link svg {
-        vertical-align: middle; /* Better alignment if display:inline-flex doesn't work */
-    }
+        .dark .text-slate-800 {
+            color: #e5e7eb;
+        }
 
-  </style>
+        .dark .text-slate-600 {
+            color: #d1d5db;
+        }
+
+        .dark .text-slate-500 {
+            color: #9ca3af;
+        }
+
+        .dark .border-slate-200 {
+            border-color: #374151;
+        }
+
+        .dark .bg-white {
+            background-color: #1f2937;
+        }
+
+        .theme-transition {
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        /* Correlation Matrix Text Color Fix */
+        .correlation-cell {
+            font-weight: 600;
+        }
+
+        /* Light theme - all cells should have black text */
+        .correlation-cell {
+            color: #000000 !important;
+        }
+
+        /* Dark theme - all correlation cells should have white text by default */
+        .dark .correlation-cell {
+            color: #ffffff !important;
+        }
+
+        /* Dark theme - specific positions should have black text */
+        /* NumberOfPickups row */
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Wind"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Temp"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="DewPoint"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Precip1h"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Precip6h"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Hour"],
+        .dark .correlation-cell[data-row="NumberOfPickups"][data-col="Month"],
+
+        /* WindSpeed row */
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Precip1h"],
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Precip6h"],
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Snow"],
+        .dark .correlation-cell[data-row="WindSpeed"][data-col="Hour"],
+
+        /* Visibility row */
+        .dark .correlation-cell[data-row="Visibility"][data-col="Wind"],
+        .dark .correlation-cell[data-row="Visibility"][data-col="Temp"],
+        .dark .correlation-cell[data-row="Visibility"][data-col="Pressure"],
+        .dark .correlation-cell[data-row="Visibility"][data-col="Precip24h"],
+        .dark .correlation-cell[data-row="Visibility"][data-col="Hour"],
+        .dark .correlation-cell[data-row="Visibility"][data-col="Month"],
+
+        /* Temp row */
+        .dark .correlation-cell[data-row="Temp"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="Temp"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="Temp"][data-col="Hour"],
+
+        /* DewPoint row */
+        .dark .correlation-cell[data-row="DewPoint"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="DewPoint"][data-col="Precip1h"],
+        .dark .correlation-cell[data-row="DewPoint"][data-col="Precip6h"],
+        .dark .correlation-cell[data-row="DewPoint"][data-col="Precip24h"],
+        .dark .correlation-cell[data-row="DewPoint"][data-col="Hour"],
+
+        /* Pressure row */
+        .dark .correlation-cell[data-row="Pressure"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="Pressure"][data-col="Snow"],
+        .dark .correlation-cell[data-row="Pressure"][data-col="Hour"],
+
+        /* Precip1h row */
+        .dark .correlation-cell[data-row="Precip1h"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="Precip1h"][data-col="Wind"],
+        .dark .correlation-cell[data-row="Precip1h"][data-col="DewPoint"],
+        .dark .correlation-cell[data-row="Precip1h"][data-col="Snow"],
+        .dark .correlation-cell[data-row="Precip1h"][data-col="Month"],
+
+        /* Precip6h row */
+        .dark .correlation-cell[data-row="Precip6h"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="Precip6h"][data-col="Wind"],
+        .dark .correlation-cell[data-row="Precip6h"][data-col="DewPoint"],
+        .dark .correlation-cell[data-row="Precip6h"][data-col="Snow"],
+        .dark .correlation-cell[data-row="Precip6h"][data-col="Month"],
+
+        /* Precip24h row */
+        .dark .correlation-cell[data-row="Precip24h"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="Precip24h"][data-col="DewPoint"],
+        .dark .correlation-cell[data-row="Precip24h"][data-col="Snow"],
+        .dark .correlation-cell[data-row="Precip24h"][data-col="Month"],
+
+        /* Snow row */
+        .dark .correlation-cell[data-row="Snow"][data-col="Wind"],
+        .dark .correlation-cell[data-row="Snow"][data-col="Pressure"],
+        .dark .correlation-cell[data-row="Snow"][data-col="Precip1h"],
+        .dark .correlation-cell[data-row="Snow"][data-col="Precip6h"],
+        .dark .correlation-cell[data-row="Snow"][data-col="Precip24h"],
+
+        /* Hour row */
+        .dark .correlation-cell[data-row="Hour"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="Hour"][data-col="Wind"],
+        .dark .correlation-cell[data-row="Hour"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="Hour"][data-col="Temp"],
+        .dark .correlation-cell[data-row="Hour"][data-col="DewPoint"],
+        .dark .correlation-cell[data-row="Hour"][data-col="Pressure"],
+
+        /* Month row */
+        .dark .correlation-cell[data-row="Month"][data-col="Pickups"],
+        .dark .correlation-cell[data-row="Month"][data-col="Visibility"],
+        .dark .correlation-cell[data-row="Month"][data-col="Precip1h"],
+        .dark .correlation-cell[data-row="Month"][data-col="Precip6h"],
+        .dark .correlation-cell[data-row="Month"][data-col="Precip24h"] {
+            color: #000000 !important;
+        }
+
+        /* small helper to make the IITM SVG look crisp in both themes */
+        .iitm-logo {
+            background: linear-gradient(180deg, #ffffff00, #ffffff00);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Analysis Methods Cards Styling */
+        .analysis-method-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 160px;
+            max-height: 180px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .analysis-method-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .analysis-method-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ensure grid items have equal heights */
+        @media (min-width: 768px) {
+            .analysis-methods-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .analysis-methods-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Compact text styling for analysis cards */
+        .analysis-method-card h4 {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 600;
+        }
+
+        .analysis-method-card p {
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+
+        .analysis-method-card ul li {
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+
+        /* Responsive Table Styling for Descriptive Statistics */
+        .descriptive-stats-table {
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .descriptive-stats-table {
+                font-size: 0.65rem;
+            }
+
+            .descriptive-stats-table th,
+            .descriptive-stats-table td {
+                padding: 0.375rem 0.5rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .descriptive-stats-table {
+                font-size: 0.6rem;
+            }
+
+            .descriptive-stats-table th,
+            .descriptive-stats-table td {
+                padding: 0.25rem 0.375rem !important;
+            }
+        }
+
+        /* Table hover effects */
+        .descriptive-stats-table tbody tr:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .dark .descriptive-stats-table tbody tr:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Correlation Matrix Table Styling */
+        .correlation-matrix-table {
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+
+        .correlation-cell {
+            font-weight: 600;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .correlation-matrix-table {
+                font-size: 0.65rem;
+            }
+
+            .correlation-matrix-table th,
+            .correlation-matrix-table td {
+                padding: 0.25rem 0.375rem !important;
+                min-width: 45px !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .correlation-matrix-table {
+                font-size: 0.6rem;
+            }
+
+            .correlation-matrix-table th,
+            .correlation-matrix-table td {
+                padding: 0.125rem 0.25rem !important;
+                min-width: 40px !important;
+            }
+        }
+
+        /* Correlation Matrix hover effects */
+        .correlation-matrix-table tbody tr:hover {
+            background-color: rgba(147, 51, 234, 0.05);
+        }
+
+        .dark .correlation-matrix-table tbody tr:hover {
+            background-color: rgba(147, 51, 234, 0.1);
+        }
+    </style>
 </head>
-<body>
 
-  <!-- Main Container - Using container-xxl for maximum width -->
-  <!-- REVISED padding: py-4 (all screens) -->
-  <div class="container-xxl py-4">
+<body class="bg-slate-50 text-slate-800 theme-transition">
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" aria-label="Toggle theme"
+        class="fixed top-4 right-4 z-50 p-2 rounded-full bg-white dark:bg-dark-800 shadow-md">
+        <i class="fas fa-moon text-brand-600 dark:hidden"></i>
+        <i class="fas fa-sun text-yellow-400 hidden dark:block"></i>
+    </button>
 
-    <!-- Main Grid Row - INCREASED gutter to g-5 for more space -->
-    <div class="row g-5">
-
-      <!-- Project Title Card - Spans full width (col-12) -->
-      <div class="col-12">
-        <div class="card text-white text-center shadow-lg" style="background: linear-gradient(to bottom right, #0dcaf0, #0d6efd);">
-          <!-- REVISED padding (p-4 standard) -->
-          <div class="card-body p-4">
-            <!-- IITM Logo -->
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png" alt="IIT Madras Logo" class="mb-4" style="height: 5rem; width: auto;"> <!-- REVISED logo size -->
-            <!-- Main Title - REVISED size to display-5 -->
-            <h1 class="card-title display-5 fw-bold mb-3">Optimizing Inventory and Operations for Sustainable Growth</h1>
-            <!-- Subtitle - REVISED size to h3 -->
-            <p class="card-subtitle h3 fw-light mb-4">Jai Maa Jhandewali Store - BDM Capstone Project</p>
-            <!-- Student Info Box - REVISED font size to fs-6 (slightly larger than default) -->
-            <div class="bg-dark bg-opacity-25 px-3 py-2 rounded d-inline-block fs-6"> <!-- REVISED padding & font size -->
-              <!-- Line 1: Name and Roll Number -->
-              <p class="mb-2">
-                <span class="fw-semibold">Sumit Kumar</span> | Roll No: <span class="fw-semibold">22f2000848</span>
-              </p>
-              <!-- Line 2: Social/Repo Links -->
-              <div class="d-flex justify-content-center align-items-center gap-3"> <!-- Flexbox for alignment and gap -->
-                <!-- GitHub Link with Icon and Text -->
-                <a href="https://github.com/repo-sumit/BDM_Project" target="_blank" rel="noopener noreferrer" class="text-white social-link" aria-label="GitHub Repository">
-                  <!-- Bootstrap GitHub Icon SVG (Size 22x22) -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-github me-1" viewBox="0 0 16 16"> <!-- Added margin -->
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-                  </svg>
-                  <span class="align-middle">GitHub repo</span> <!-- Added Text -->
+    <!-- NAVBAR -->
+    <header
+        class="sticky top-0 z-40 bg-white/80 dark:bg-dark-800/80 backdrop-blur border-b border-slate-200 dark:border-dark-600">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-3 font-semibold">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/1200px-IIT_Madras_Logo.svg.png"
+                        alt="IITM Logo" class="h-9 w-9 object-contain">
+                    <span class="text-lg">BDM Capstone Project</span>
                 </a>
-                <!-- LinkedIn Link with Icon and Text -->
-                <a href="https://www.linkedin.com/in/in-sumit/" target="_blank" rel="noopener noreferrer" class="text-white social-link" aria-label="LinkedIn Profile">
-                   <!-- Bootstrap LinkedIn Icon SVG (Size 22x22) -->
-                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-linkedin me-1" viewBox="0 0 16 16"> <!-- Added margin -->
-                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-                   </svg>
-                   <span class="align-middle">LinkedIn</span> <!-- Added Text -->
-                </a>
-              </div>
+
+                <nav class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="#hero" class="hover:text-brand-700 dark:hover:text-brand-400">Home</a>
+                    <a href="#about" class="hover:text-brand-700 dark:hover:text-brand-400">Background</a>
+                    <a href="#problem" class="hover:text-brand-700 dark:hover:text-brand-400">Problem</a>
+                    <a href="#methods" class="hover:text-brand-700 dark:hover:text-brand-400">Methods</a>
+                    <a href="#recommendations"
+                        class="hover:text-brand-700 dark:hover:text-brand-400">Recommendations</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button class="md:hidden mobile-menu-button p-2 rounded-md">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- End Project Title Card -->
 
-      <!-- Store Information Card -->
-      <div class="col-lg-6">
-        <div class="card h-100 shadow-sm card-accent-left">
-          <div class="card-header bg-primary bg-opacity-10 border-primary">
-             <h2 class="h4 mb-0 text-primary fw-semibold">About Jai Maa Jhandewali Store</h2>
-          </div>
-          <div class="card-body p-4">
-            <div class="store-image-container mb-4">
-               <img src="https://i.ibb.co/T3rRXHf/Screenshot-2025-04-22-080742.png" alt="Store Front" class="store-image active" id="storeImage1">
-               <img src="https://i.ibb.co/35vY7zjV/Screenshot-2025-04-22-080939.png" alt="Store Interior" class="store-image" id="storeImage2">
-               <img src="https://i.ibb.co/ZzwVnsck/Screenshot-2025-04-22-081125.png" alt="Authorization Letter" class="store-image" id="storeImage3">
-            </div>
-            <div class="text-center mb-4">
-              <button onclick="changeStoreImage(-1)" class="btn btn-primary btn-sm me-2">Previous</button>
-              <button onclick="changeStoreImage(1)" class="btn btn-primary btn-sm">Next</button>
-            </div>
-            <div class="insights-list">
-              <h3 class="h5 fw-semibold text-dark mb-3">Store Overview:</h3>
-              <ul class="text-muted fs-6">
-                <li><strong>Type:</strong> Family-run B2C grocery store</li>
-                <li><strong>Location:</strong> VP Block, Pitampura, Delhi</li>
-                <li><strong>Owner:</strong> Mr. Satyam Prakash (Student)</li>
-                <li><strong>Established:</strong> ~2 years ago</li>
-                <li><strong>Products:</strong> Daily essentials, dairy, groceries, FMCG</li>
-                <li><strong>Operations:</strong> 9 AM - 9 PM, Family-run</li>
-              </ul>
-            </div>
-          </div>
+        <!-- Mobile menu -->
+        <!-- <div
+            class="mobile-menu hidden md:hidden bg-white dark:bg-dark-800 p-4 border-t border-slate-200 dark:border-dark-600">
+            <a href="#about" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">About</a>
+            <a href="#datasets" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Datasets</a>
+            <a href="#methods" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Methods</a>
+            <a href="#findings" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Findings</a>
+            <a href="#recommendations"
+                class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Recommendations</a>
+            <a href="#credits" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Credits</a>
+        </div> -->
+        <div
+            class="mobile-menu hidden md:hidden bg-white dark:bg-dark-800 p-4 border-t border-slate-200 dark:border-dark-600 space-y-2">
+            <a href="#hero" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Home</a>
+            <a href="#about" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Background</a>
+            <a href="#problem" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Problem</a>
+            <a href="#methods" class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Methods</a>
+            <a href="#recommendations"
+                class="block py-2 hover:text-brand-700 dark:hover:text-brand-400">Recommendations</a>
+
+            <!-- Added Theme Toggle inside menu (mobile only) -->
+            <button id="theme-toggle-mobile"
+                class="w-full mt-2 px-4 py-2 rounded-xl border border-slate-300 dark:border-dark-600 flex items-center justify-center gap-2">
+                <i class="fas fa-moon text-brand-600 dark:hidden"></i>
+                <i class="fas fa-sun text-yellow-400 hidden dark:block"></i>
+                <span>Toggle Theme</span>
+            </button>
         </div>
-      </div>
-      <!-- End Store Information Card -->
 
-      <!-- Problem Statement Card -->
-       <div class="col-lg-6">
-         <div class="card h-100 shadow-sm card-accent-left">
-           <div class="card-header bg-primary bg-opacity-10 border-primary">
-              <h2 class="h4 mb-0 text-primary fw-semibold">Problem Statement & Background</h2>
-           </div>
-           <div class="card-body p-4 insights-list">
-             <h3 class="h5 fw-semibold text-dark mb-3">Identified Objectives:</h3>
-             <ul class="text-muted mb-4 fs-6">
-               <li>
-                 <strong>Inventory Management Issues:</strong> Difficulty maintaining optimal stock, managing fluctuations for perishables/seasonal items, avoiding wastage/missed sales.
-               </li>
-                <li>
-                 <strong>Space Constraints:</strong> Limited physical space restricts efficient storage, product range expansion, and managing slow-moving products.
-               </li>
-               <li>
-                 <strong>Limited Business Growth:</strong> Reliance on family-run operations & manual systems hinders scalability and operational efficiency.
-               </li>
-             </ul>
-             <h3 class="h5 fw-semibold text-dark mt-4 mb-3">Problem Background:</h3>
-              <p class="text-muted mb-3 fs-6">The store handles diverse SKUs with varying shelf lives. The owner's academic commitments limit time for detailed inventory management, leading to overstocking or stockouts, especially for high-demand/seasonal items. Lack of automated systems worsens this.</p>
-              <p class="text-muted mb-3 fs-6">Operating from a single room attached to home creates significant space limits. Excess inventory stored in the house is inefficient. This restricts product range expansion and complicates stock handling.</p>
-              <p class="text-muted mb-0 fs-6">The family-run model faces scalability challenges due to potential inconsistencies and lack of professional systems (sales/inventory tracking). Competition from quick-commerce platforms necessitates exploring options like home delivery.</p>
-           </div>
-         </div>
-       </div>
-      <!-- End Problem Statement Card -->
+    </header>
 
-      <!-- Data Overview & Metadata Card -->
-       <div class="col-12">
-         <div class="card shadow-sm card-accent-left">
-            <div class="card-header bg-primary bg-opacity-10 border-primary">
-                <h2 class="h4 mb-0 text-primary fw-semibold">Data Overview & Collection</h2>
+    <!-- HERO -->
+    <section id="hero" class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-50 to-transparent dark:from-dark-900 dark:to-dark-800">
+        </div>
+        <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 relative">
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <p class="text-brand-700 dark:text-brand-400 font-semibold tracking-wide uppercase mb-3">IIT Madras
+                        · Business Data Management</p>
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight text-slate-900 dark:text-white">
+                        Optimizing Inventory & Operations for <span
+                            class="text-brand-700 dark:text-brand-400">Sustainable Growth</span>
+                    </h1>
+                    <p class="mt-5 text-slate-700 dark:text-slate-300 text-lg">
+                        A comprehensive academic capstone project focusing on optimizing inventory management and operational efficiency for Jai Maa Jhandewali Store, a family-run grocery business in Pitampura, Delhi. Built with rigorous data analysis using Excel records, ABC analysis, correlation studies, and machine learning forecasting for sustainable growth.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="#recommendations"
+                            class="px-4 py-2 rounded-xl bg-slate-900 dark:bg-brand-600 text-white hover:bg-slate-800 dark:hover:bg-brand-700">See
+                            Recommendations</a>
+                        <a href="#methods"
+                            class="px-4 py-2 rounded-xl border border-slate-300 dark:border-dark-600 hover:bg-white dark:hover:bg-dark-700">View
+                            Methodology</a>
+                    </div>
+                    <!-- <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
+                        Repo: <span class="font-medium">bdm-project</span> · License: MIT · Author: Achal Deep
+                        (22F3000694)
+                    </p> -->
+                </div>
+
+                <div class="relative">
+                    <div
+                        class="rounded-3xl border border-slate-200 dark:border-dark-600 bg-white dark:bg-dark-800 p-6 shadow-soft dark:shadow-dark-soft">
+                        <!-- Student Credits Section -->
+                        <div class="text-center space-y-6">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Project Author</h3>
+                                <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="bg-slate-50 dark:bg-dark-700 rounded-2xl p-6">
+                                    <h4 class="text-xl font-semibold text-slate-900 dark:text-white mb-1">Sumit Kumar
+                                    </h4>
+                                    <p class="text-brand-600 dark:text-brand-400 font-medium mb-2">Roll No: 22f2000848
+                                    </p>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">IIT Madras BS Degree Program - Data Science & Applications
+                                    </p>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Business Data Management -
+                                        Capstone Project</p>
+                                </div>
+
+                                <div class="flex justify-center gap-4">
+                                    <a href="https://github.com/repo-sumit/BDM_Project" target="_blank" rel="noopener noreferrer" 
+                                       class="flex items-center gap-2 px-4 py-3 bg-gray-900 dark:bg-gray-800 text-white rounded-xl hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
+                                        <i class="fab fa-github text-lg"></i>
+                                        <span class="text-sm font-medium">GitHub Repo</span>
+                                    </a>
+                                    <a href="https://linkedin.com/in/in-sumit" target="_blank" rel="noopener noreferrer" 
+                                       class="flex items-center gap-2 px-4 py-3 bg-blue-600 dark:bg-blue-700 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-800 transition-colors">
+                                        <i class="fab fa-linkedin text-lg"></i>
+                                        <span class="text-sm font-medium">LinkedIn</span>
+                                    </a>
+                                </div>
+
+                                <div class="mt-4 pt-4 border-t border-slate-200 dark:border-dark-600">
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                                        Academic Project · Jan 2025 Term
+                                        <br>
+                                        Created as part of IIT Madras BS in Data Science & Applications
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Student Information & Project Links</p> -->
+                </div>
             </div>
-            <div class="card-body p-4">
-                <div class="row g-4 metadata-list">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="p-3 bg-light border rounded h-100">
-                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Source & Scope</h3>
-                            <ul class="text-muted fs-6">
-                                <li><strong>Type:</strong> Primary Data</li>
-                                <li><strong>Source:</strong> Jai Maa Jhandewali Store</li>
-                                <li><strong>Collection:</strong> Record Digitization, Interviews</li>
-                                <li><strong>Period:</strong> Jan 2024 - Jan 2025 (13 Mo)</li>
+        </div>
+    </section>
+
+    <!-- ORGANIZATION BACKGROUND -->
+    <section id="about" class="py-14 bg-slate-50 dark:bg-dark-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white">Organization Background
+                </h2>
+                <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-600 dark:bg-green-500 flex items-center justify-center">
+                                <i class="fas fa-store text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold dark:text-white">Jai Maa Jhandewali Store</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Family-Run Grocery Store (B2C Model)</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-700 dark:text-slate-300 leading-7">
+                            Located in VP Block, Pitampura, North West Delhi, this family-run grocery store is owned by Mr. Satyam Prakash. Started with an initial investment of ₹7 Lakhs, the store achieved profitability after 1.5 years and serves the local community with dairy products, FMCG items, and groceries.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <h4 class="text-lg font-semibold mb-3 dark:text-white">Product Portfolio</h4>
+                        <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-glass-whiskey text-blue-500 text-xs"></i>
+                                <span><strong>Dairy Products:</strong> Milk, Butter, and dairy essentials</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-cookie-bite text-orange-500 text-xs"></i>
+                                <span><strong>FMCG Items:</strong> Chips, Biscuits, Soft Drinks, Toiletries</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-bread-slice text-amber-500 text-xs"></i>
+                                <span><strong>Groceries:</strong> Rice, Pulses, Spices, Wheat, Sugar</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-shopping-basket text-green-500 text-xs"></i>
+                                <span><strong>Daily Essentials:</strong> Bread, Salt, and household items</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div
+                        class="bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 rounded-2xl p-6">
+                        <h4 class="text-lg font-semibold mb-4 dark:text-white">Store Details</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-brand-600 dark:text-brand-400">₹7L</div>
+                                <div class="text-xs text-slate-600 dark:text-slate-400">Initial Investment</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-brand-600 dark:text-brand-400">1.5 Yrs</div>
+                                <div class="text-xs text-slate-600 dark:text-slate-400">To Profitability</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-brand-600 dark:text-brand-400">110034</div>
+                                <div class="text-xs text-slate-600 dark:text-slate-400">PIN Code</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-brand-600 dark:text-brand-400">B2C</div>
+                                <div class="text-xs text-slate-600 dark:text-slate-400">Business Model</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <h4 class="text-lg font-semibold mb-3 dark:text-white">Store Information</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-slate-300">VP Block, Pitampura, North West Delhi</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                                    <i class="fas fa-user text-green-600 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-slate-300">Owner: Mr. Satyam Prakash</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                                    <i class="fas fa-users text-purple-600 text-sm"></i>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-slate-300">Family-run operation serving local community</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM STATEMENT & BACKGROUND -->
+    <section id="problem" class="py-14 bg-white dark:bg-dark-900 border-y border-slate-200 dark:border-dark-600">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Problem Statement & Background</h2>
+                <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Brief Background -->
+                <div class="bg-slate-50 dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                    <h3 class="text-xl font-semibold mb-4 dark:text-white">Background</h3>
+                    <p class="text-slate-700 dark:text-slate-300 leading-7">
+                        Family-run grocery stores face unique challenges in managing inventory efficiently while maintaining profitability. Jai Maa Jhandewali Store, with its limited resources and manual operations, experiences difficulties in inventory optimization, space utilization, and business growth. These challenges impact operational efficiency, customer satisfaction, and the store's ability to compete with modern retail formats.
+                    </p>
+                </div>
+
+                <!-- Three Problem Statements -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                            <i class="fas fa-search text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800 dark:text-blue-300">Problem Statement</h3>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div
+                            class="bg-white dark:bg-blue-900/10 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
+                            <h4 class="font-semibold text-blue-800 dark:text-blue-300 mb-2">1 Inventory Management Issues</h4>
+                            <p class="text-sm text-blue-700 dark:text-blue-400">
+                                Difficulty in maintaining optimal stock levels, leading to overstocking or stockouts, especially for perishable items, and lack of automated tracking systems for efficient inventory management.
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-blue-900/10 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
+                            <h4 class="font-semibold text-blue-800 dark:text-blue-300 mb-2">2 Space Constraints and Organization</h4>
+                            <p class="text-sm text-blue-700 dark:text-blue-400">
+                                Limited physical storage space resulting in inefficient product organization, clutter, and suboptimal use of available retail space affecting customer experience and operations.
+                            </p>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-blue-900/10 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
+                            <h4 class="font-semibold text-blue-800 dark:text-blue-300 mb-2">3 Limited Business Growth</h4>
+                            <p class="text-sm text-blue-700 dark:text-blue-400">
+                                Reliance on family-run operations with no automated systems for sales/inventory tracking and absence of home delivery service to compete with quick-commerce platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANALYTICAL APPROACH & METHODOLOGY -->
+    <section id="methods" class="py-14 bg-white dark:bg-dark-900 border-y border-slate-200 dark:border-dark-600">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white">Analytical Approach &
+                    Methodology</h2>
+                <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- 1. Data Collection & Overview -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                        <span class="text-blue-600 dark:text-blue-400 font-bold text-sm">1</span>
+                    </div>
+                    Data Collection & Overview
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Data Collection -->
+                    <div
+                        class="bg-slate-50 dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <h4 class="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fas fa-database text-blue-600 dark:text-blue-400"></i>
+                            Data Collection
+                        </h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 mb-3">
+                            Primary data collected from handwritten sales records digitized into Excel format, covering 13 months of operational data from Jan 2024 to Jan 2025.
+                        </p>
+                        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                            <li>• <strong>Data Type:</strong> Primary</li>
+                            <li>• <strong>Source:</strong> Handwritten sales records</li>
+                            <li>• <strong>Licensing:</strong> Academic use (Approved by Owner)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Dataset Summaries -->
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fas fa-chart-bar text-green-600 dark:text-green-400"></i>
+                            Dataset Summaries
+                        </h4>
+
+                        <div
+                            class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="font-medium text-slate-900 dark:text-white text-sm">Sales Records Dataset
+                                </h5>
+                                <div class="inline-flex items-center gap-1 px-2 py-1 bg-green-600 text-white text-xs rounded">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel Data
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">8,563 bills aggregated into 398 rows × 14 columns covering Dairy, FMCG, and Groceries</p>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="font-medium text-slate-900 dark:text-white text-sm">Product Categories
+                                </h5>
+                                <div class="inline-flex items-center gap-1 px-2 py-1 bg-purple-600 text-white text-xs rounded">
+                                    <i class="fas fa-tags"></i>
+                                    3 Categories
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Dairy (Milk, Butter), FMCG (Chips, Biscuits, Soft Drinks), Groceries (Rice, Pulses, Spices)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Data Cleaning & Feature Engineering -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
+                        <span class="text-green-600 dark:text-green-400 font-bold text-sm">2</span>
+                    </div>
+                    Data Cleaning & Feature Engineering
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Data Cleaning -->
+                    <div
+                        class="bg-slate-50 dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <h4 class="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fas fa-broom text-orange-600 dark:text-orange-400"></i>
+                            Data Processing
+                        </h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 mb-3">
+                            Comprehensive data processing from handwritten records to digital format, ensuring data quality and consistency for analysis.
+                        </p>
+                        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                            <li>• Digitization of handwritten sales records</li>
+                            <li>• Data aggregation from 8,563 bills to 398 analytical rows</li>
+                            <li>• Category standardization (Dairy, FMCG, Groceries)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Engineering -->
+                    <div
+                        class="bg-slate-50 dark:bg-dark-800 rounded-2xl p-6 border border-slate-200 dark:border-dark-600">
+                        <h4 class="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fas fa-wrench text-purple-600 dark:text-purple-400"></i>
+                            Analysis Methods
+                        </h4>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 mb-3">
+                            Multiple analytical approaches including statistical analysis, trend analysis, ABC categorization, and machine learning forecasting.
+                        </p>
+                        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                            <li>• Descriptive statistics and trend analysis</li>
+                            <li>• ABC analysis for inventory categorization</li>
+                            <li>• Correlation analysis and ML forecasting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Analysis Methods & Key Findings -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
+                        <span class="text-red-600 dark:text-red-400 font-bold text-sm">3</span>
+                    </div>
+                    Analysis Methods & Key Findings
+                </h3>
+
+                <!-- Responsive Grid Layout: 1 method per row -->
+                <div class="analysis-methods-grid grid grid-cols-1 gap-6">
+                    <!-- 1. Trend Analysis -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-chart-line text-blue-600 dark:text-blue-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">1. Trend Analysis</h4>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Identified sales patterns and seasonal behaviors over time to understand demand fluctuations and prepare inventory accordingly.
+                        </p>
+
+                        <!-- Key Findings - Always Visible -->
+                        <div class="mb-4">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2">Key Findings:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Dairy sales (especially Milk) peak during March, June, October, and December due to festivals and seasonal demand</li>
+                                <li>• FMCG products like Bread show similar seasonal fluctuations to Milk</li>
+                                <li>• Grocery sales remain steady throughout the year, with Pulse being the highest contributor</li>
+                                <li>• October shows highest overall sales volume due to festive season (Navratri, Diwali)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-1.5 mt-auto">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-slate-500 dark:text-slate-400">
+                                    <strong>Analysis:</strong> Temporal sales patterns and seasonal behavior analysis
+                                </p>
+
+                                <!-- Toggle Button for Charts -->
+                                <button id="toggleTrendCharts"
+                                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    onclick="toggleTrendCharts()">
+                                    <i id="trendIcon"
+                                        class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                                    <span id="trendText">Show Charts</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Collapsible Chart Container for Trend Analysis -->
+                        <div id="trendChartsContainer" class="overflow-hidden transition-all duration-500 ease-in-out" 
+                             style="max-height: 0; opacity: 0;">
+                            <div class="mt-4 bg-slate-50 dark:bg-dark-700 rounded-lg p-4">
+                                <h5 class="font-medium text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <i class="fas fa-chart-line text-blue-600 dark:text-blue-400"></i>
+                                    Seasonal Sales Trends
+                                </h5>
+                                <div class="bg-white dark:bg-dark-800 rounded-lg p-4 border border-slate-200 dark:border-dark-600"
+                                     style="height: 300px;">
+                                    <canvas id="trendChart"></canvas>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
+                                    Monthly sales trends showing seasonal patterns and festival peaks
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Sales Prediction Using Machine Learning (ML) -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-robot text-green-600 dark:text-green-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">2. Sales Prediction Using Machine Learning (ML)</h4>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Applied Linear Regression models to forecast future sales demand based on historical data patterns and seasonal trends.
+                        </p>
+
+                        <!-- Key Findings - Always Visible -->
+                        <div class="mb-4">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2">Key Findings:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Successfully predicted Milk sales using historical data with reasonable accuracy</li>
+                                <li>• Model can be extended to other perishable categories like Dairy and FMCG</li>
+                                <li>• Enables proactive inventory planning for high-demand periods</li>
+                                <li>• Helps balance supply with expected demand to reduce wastage</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-1.5 mt-auto">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-slate-500 dark:text-slate-400">
+                                    <strong>Model:</strong> Linear Regression for demand forecasting
+                                </p>
+
+                                <!-- Toggle Button for ML Charts -->
+                                <button id="toggleMLCharts"
+                                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded hover:bg-green-100 dark:hover:bg-green-900/30 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-green-500"
+                                    onclick="toggleMLCharts()">
+                                    <i id="mlIcon"
+                                        class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                                    <span id="mlText">Show Predictions</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Collapsible Chart Container for ML Predictions -->
+                        <div id="mlChartsContainer" class="overflow-hidden transition-all duration-500 ease-in-out" 
+                             style="max-height: 0; opacity: 0;">
+                            <div class="mt-4 bg-slate-50 dark:bg-dark-700 rounded-lg p-4">
+                                <h5 class="font-medium text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <i class="fas fa-robot text-green-600 dark:text-green-400"></i>
+                                    Sales Prediction Results
+                                </h5>
+                                <div class="bg-white dark:bg-dark-800 rounded-lg p-4 border border-slate-200 dark:border-dark-600"
+                                     style="height: 300px;">
+                                    <canvas id="mlChart"></canvas>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
+                                    Linear Regression model predictions vs actual sales data for Milk
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. ABC Analysis -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-layer-group text-purple-600 dark:text-purple-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">3. ABC Analysis</h4>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Categorized products based on their sales contribution to prioritize inventory management and space allocation.
+                        </p>
+
+                        <!-- Key Findings - Always Visible -->
+                        <div class="mb-4">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2">Key Findings:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• <strong>Category A (70.59% of sales):</strong> Milk, Bread, Chips, Biscuits, Toiletries, Soft Drinks</li>
+                                <li>• <strong>Category B (16.59% of sales):</strong> Pulse, Sugar, Butter, Wheat</li>
+                                <li>• <strong>Category C (3.75% of sales):</strong> Rice, Spices, Salt</li>
+                                <li>• Milk leads with 25.85% of total sales, followed by Bread (16.77%)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-1.5 mt-auto">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-slate-500 dark:text-slate-400">
+                                    <strong>Method:</strong> Pareto analysis for inventory prioritization
+                                </p>
+
+                                <!-- Toggle Button for ABC Charts -->
+                                <button id="toggleABCCharts"
+                                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                    onclick="toggleABCCharts()">
+                                    <i id="abcIcon"
+                                        class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                                    <span id="abcText">Show ABC Analysis</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Collapsible Chart Container for ABC Analysis -->
+                        <div id="abcChartsContainer" class="overflow-hidden transition-all duration-500 ease-in-out" 
+                             style="max-height: 0; opacity: 0;">
+                            <div class="mt-4 bg-slate-50 dark:bg-dark-700 rounded-lg p-4">
+                                <h5 class="font-medium text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <i class="fas fa-layer-group text-purple-600 dark:text-purple-400"></i>
+                                    ABC Category Distribution
+                                </h5>
+                                <div class="bg-white dark:bg-dark-800 rounded-lg p-4 border border-slate-200 dark:border-dark-600"
+                                     style="height: 300px;">
+                                    <canvas id="abcChart"></canvas>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
+                                    Pareto chart showing product categorization based on sales contribution
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Correlation Analysis -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-4 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-project-diagram text-orange-600 dark:text-orange-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">4. Correlation Analysis</h4>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Examined relationships between different SKUs to identify complementary products and cross-selling opportunities.
+                        </p>
+
+                        <!-- Key Findings - Always Visible -->
+                        <div class="mb-4">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2">Key Findings:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• <strong>Strong positive correlations:</strong> Pulse & Wheat (0.729), Pulse & Rice (0.691), Rice & Wheat (0.629)</li>
+                                <li>• <strong>Moderate correlations:</strong> Soft Drinks & Sugar (0.595), Milk & Butter (0.546), Bread & Sugar (0.550)</li>
+                                <li>• Chips & Biscuits (0.499) indicate snack bundling potential</li>
+                                <li>• Spices show negligible correlation with all other products (<0.2)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-1.5 mt-auto">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs text-slate-500 dark:text-slate-400">
+                                    <strong>Analysis:</strong> Pearson correlation matrix for cross-selling opportunities
+                                </p>
+
+                                <!-- Toggle Button for Correlation Charts -->
+                                <button id="toggleCorrelationCharts"
+                                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                                    onclick="toggleCorrelationCharts()">
+                                    <i id="corrIcon"
+                                        class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                                    <span id="corrText">Show Correlation Matrix</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Collapsible Chart Container for Correlation Analysis -->
+                        <div id="correlationChartsContainer" class="overflow-hidden transition-all duration-500 ease-in-out" 
+                             style="max-height: 0; opacity: 0;">
+                            <div class="mt-4 bg-slate-50 dark:bg-dark-700 rounded-lg p-4">
+                                <h5 class="font-medium text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <i class="fas fa-project-diagram text-orange-600 dark:text-orange-400"></i>
+                                    Product Correlation Matrix
+                                </h5>
+                                <div class="bg-white dark:bg-dark-800 rounded-lg p-4 border border-slate-200 dark:border-dark-600"
+                                     style="height: 300px;">
+                                    <canvas id="correlationChart"></canvas>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
+                                    Heatmap showing correlation coefficients between different product categories
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </section>
+
+
+    <!-- INTERPRETING RESULTS & RECOMMENDATIONS -->
+
+
+    <!-- INTERPRETING RESULTS & RECOMMENDATIONS -->
+    <section id="recommendations" class="py-14 bg-slate-50 dark:bg-dark-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white">Interpreting Results & Recommendations</h2>
+                <div class="w-16 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- Analysis Results Grid -->
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Trend Analysis -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-5 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-chart-line text-blue-600 dark:text-blue-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">Trend Analysis</h4>
+                        </div>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Sales show clear seasonal patterns with predictable peaks during festivals and specific months. Dairy and FMCG categories exhibit highest fluctuations.
+                        </p>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-3">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2 text-sm">Key Recommendations:</h5>
+                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Increase stock of Milk and Bread during peak months (March, June, October, December)</li>
+                                <li>• Plan inventory spikes for festive seasons like Diwali and Christmas</li>
+                                <li>• Adjust staffing schedules to handle increased footfall during high-demand periods</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="p-3 bg-light border rounded h-100">
-                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Dataset Details</h3>
-                            <ul class="text-muted fs-6">
-                                <li><strong>Format:</strong> Cleaned, daily aggregated</li>
-                                <li><strong>Records:</strong> 398 days</li>
-                                <li><strong>Columns:</strong> 14 (Date + 13 SKUs)</li>
-                                <li><a href="https://docs.google.com/spreadsheets/d/1hMAmaAbf4dJ4aiPyztVxLYa6_tDHUOJYUaob6Naxx18/edit?usp=sharing" target="_blank" class="text-primary fw-medium">View Dataset <small>(opens new tab)</small></a></li>
+
+                    <!-- Inventory Management -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-5 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-boxes text-purple-600 dark:text-purple-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">Inventory Management</h4>
+                        </div>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            ABC analysis reveals 70.59% of sales come from just 6 products. Milk alone contributes 25.85% of total revenue while Category C items underperform.
+                        </p>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-3">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2 text-sm">Key Recommendations:</h5>
+                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Implement just-in-time inventory for Category A items (Milk, Bread, Chips)</li>
+                                <li>• Reduce stocking space for Category C items (Rice, Spices, Salt)</li>
+                                <li>• Create bundled offers for high-correlation products (Pulse-Wheat, Milk-Bread)</li>
+                                <li>• Introduce discounts for near-expiry perishable items</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="p-3 bg-light border rounded h-100">
-                            <h3 class="h5 fw-semibold text-primary-emphasis mb-3">Key Categories</h3>
-                            <ul class="text-muted fs-6">
-                                <li><strong>Dairy:</strong> Milk, Butter</li>
-                                <li><strong>Groceries:</strong> Rice, Wheat, Pulse...</li>
-                                <li><strong>FMCG:</strong> Bread, Soft Drinks, Chips...</li>
-                                <li><span class="fw-medium text-primary">13 Total SKUs Tracked</span></li>
+
+                    <!-- Business Growth Constraints -->
+                    <div class="bg-white dark:bg-dark-800 rounded-xl p-5 border border-slate-200 dark:border-dark-600">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fas fa-chart-bar text-orange-600 dark:text-orange-400 text-lg"></i>
+                            <h4 class="text-lg font-semibold text-slate-900 dark:text-white">Business Growth Constraints</h4>
+                        </div>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Manual operations and space limitations restrict scalability. Owner's academic commitments create operational gaps during critical business periods.
+                        </p>
+
+                        <div class="bg-slate-50 dark:bg-dark-700 rounded p-3">
+                            <h5 class="font-medium text-slate-900 dark:text-white mb-2 text-sm">Key Recommendations:</h5>
+                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Install POS system for automated sales and inventory tracking</li>
+                                <li>• Hire temporary staff during peak months and exam periods</li>
+                                <li>• Launch home delivery service via local WhatsApp orders</li>
+                                <li>• Implement vertical storage solutions to maximize space utilization</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-           </div>
-         </div>
-       </div>
-      <!-- End Data Overview Card -->
 
-      <!-- Analysis Methods Card -->
-       <div class="col-12">
-           <div class="card shadow-sm card-accent-left">
-             <div class="card-header bg-success bg-opacity-10 border-success">
-                <h2 class="h4 mb-0 text-success fw-semibold">Analysis Methods Used</h2>
-             </div>
-             <div class="card-body p-4">
-               <div class="row g-4">
-                   <div class="col-lg col-md-6">
-                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
-                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">1. Descriptive Stats</h3>
-                           <p class="text-muted mb-0 fs-6">Calculated stats (Mean, Median, StdDev) to understand SKU sales patterns.</p>
-                       </div>
-                   </div>
-                   <div class="col-lg col-md-6">
-                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
-                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">2. Trend Analysis</h3>
-                           <p class="text-muted mb-0 fs-6">Identified seasonal/weekly patterns using Box Plots & Line Charts.</p>
-                       </div>
-                   </div>
-                   <div class="col-lg col-md-6">
-                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
-                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">3. ABC Segmentation</h3>
-                           <p class="text-muted mb-0 fs-6">Classified products (A, B, C) by sales volume contribution.</p>
-                       </div>
-                   </div>
-                   <div class="col-lg col-md-6">
-                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
-                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">4. Correlation Analysis</h3>
-                           <p class="text-muted mb-0 fs-6">Used Pearson Correlation & Heatmap for category relationships.</p>
-                       </div>
-                   </div>
-                    <div class="col-lg col-md-6">
-                       <div class="analysis-method p-3 bg-success-subtle border border-success-subtle rounded h-100">
-                           <h3 class="h5 fw-semibold text-success-emphasis mb-2">5. Sales Prediction (ML)</h3>
-                           <p class="text-muted mb-0 fs-6">Applied Linear Regression (Milk example) to show forecast feasibility.</p>
-                       </div>
-                   </div>
-               </div>
-             </div>
-           </div>
-       </div>
-       <!-- End Analysis Methods Card -->
-
-      <!-- Results & Findings Section -->
-       <div class="col-12">
-           <div class="card shadow-sm">
-             <div class="card-header bg-info bg-opacity-10 border-info">
-                <h2 class="h4 mb-0 text-info fw-semibold">Results & Findings</h2>
-             </div>
-             <div class="card-body p-4">
-                <div class="row g-4">
-
-                  <!-- Monthly Sales Bar Chart Card -->
-                   <div class="col-md-6">
-                     <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column p-4">
-                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Average Monthly Sales Distribution</h3>
-                           <p class="text-center text-muted mb-3 fs-6">(Aggregated Daily Units - Placeholder Data)</p>
-                           <div class="chart-container flex-grow-1">
-                              <canvas id="monthlySalesChart"></canvas> <!-- This will be purple -->
-                           </div>
-                           <div class="insights-list mt-3">
-                             <ul class="list-unstyled mb-0 fs-6">
-                               <li>▸ Peak Average Sales: <span class="badge bg-danger-subtle text-danger-emphasis">Oct & Dec</span></li>
-                               <li>▸ Summer Peak: <span class="badge bg-warning-subtle text-warning-emphasis">May-July</span></li>
-                               <li>▸ Lowest Average Sales: <span class="badge bg-secondary-subtle text-secondary-emphasis">Jan & Feb</span></li>
-                               <li class="mt-2 fst-italic">(Note: Bar chart shows averages)</li>
-                             </ul>
-                           </div>
+            <!-- Strategic Implementation Summary -->
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-500"></i>
+                        Strategic Implementation Summary
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-semibold text-slate-900 dark:text-white mb-2">Immediate Actions:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Deploy ABC categorization for inventory prioritization</li>
+                                <li>• Launch seasonal promotional campaigns for festive periods</li>
+                                <li>• Implement basic sales forecasting for perishable items</li>
+                            </ul>
                         </div>
-                     </div>
-                   </div>
-                   <!-- End Monthly Sales Bar Chart Card -->
-
-                   <!-- Category Sales Trend Card -->
-                   <div class="col-md-6">
-                     <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column p-4">
-                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Monthly Sales Trend by Category</h3>
-                           <p class="text-center text-muted mb-3 fs-6">(Placeholder Data)</p>
-                           <div class="chart-container flex-grow-1">
-                               <canvas id="categoryTrendChart"></canvas> <!-- This will have sharp edges -->
-                           </div>
-                           <div class="insights-list mt-3">
-                             <ul class="list-unstyled mb-0 fs-6">
-                               <li>▸ <span class="badge bg-danger-subtle text-danger-emphasis">FMCG</span> leads sales volume.</li>
-                               <li>▸ <span class="badge bg-primary-subtle text-primary-emphasis">Dairy</span> consistently second.</li>
-                               <li>▸ <span class="badge bg-success-subtle text-success-emphasis">Groceries</span> lowest volume.</li>
-                               <li>▸ Seasonal peak for FMCG in Summer (May-July).</li>
-                             </ul>
-                           </div>
+                        <div>
+                            <h5 class="font-semibold text-slate-900 dark:text-white mb-2">Long-term Strategy:</h5>
+                            <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                                <li>• Develop comprehensive demand prediction using machine learning</li>
+                                <li>• Establish automated inventory management system</li>
+                                <li>• Create scalable delivery service model</li>
+                                <li>• Implement performance monitoring dashboard</li>
+                            </ul>
                         </div>
-                     </div>
-                   </div>
-                   <!-- End Category Sales Trend Card -->
-
-                   <!-- ABC Analysis Card (Now Pie Chart) -->
-                   <div class="col-md-6">
-                     <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column p-4">
-                            <h3 class="h5 fw-semibold text-center text-dark mb-2">ABC Analysis (% Volume Contribution)</h3>
-                            <p class="text-center text-muted mb-3 fs-6">(Placeholder Data)</p>
-                            <div class="chart-container flex-grow-1"> <!-- Using default height -->
-                               <canvas id="abcChart"></canvas>
-                            </div>
-                            <div class="insights-list mt-3">
-                              <ul class="list-unstyled mb-0 fs-6">
-                                <li><span style="color: #119256;">█</span> <strong>Category A (~76%):</strong> Prioritize (Milk, Bread, Chips...)</li>
-                                <li><span style="color: #ffc107;">█</span> <strong>Category B (~17%):</strong> Monitor (Pulse, Sugar, Butter...)</li>
-                                <li><span style="color: #dc3545;">█</span> <strong>Category C (~7%):</strong> Optimize (Rice, Spices, Salt...)</li>
-                              </ul>
-                            </div>
-                        </div>
-                     </div>
-                   </div>
-                   <!-- End ABC Analysis Card -->
-
-                   <!-- Category Correlation Card -->
-                    <div class="col-md-6">
-                      <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column p-4">
-                           <h3 class="h5 fw-semibold text-center text-dark mb-2">Key Category Sales Correlations</h3>
-                           <p class="text-center text-muted mb-3 fs-6">(Placeholder Data - Replaced Heatmap)</p>
-                           <div class="chart-container-corr flex-grow-1">
-                               <canvas id="correlationChart"></canvas>
-                           </div>
-                           <div class="insights-list mt-3">
-                             <h4 class="h6 fw-medium mb-2">Key Correlations:</h4>
-                             <ul class="list-unstyled mb-2 fs-6">
-                               <li>FMCG & Groceries: <span class="fw-semibold text-success">~0.65</span></li>
-                               <li>FMCG & Dairy: <span class="fw-semibold text-primary">~0.61</span></li>
-                               <li>Dairy & Groceries: <span class="fw-semibold text-danger">~0.43</span></li>
-                             </ul>
-                             <p class="mb-0 fs-6">Suggests bundling/placement opportunities.</p>
-                           </div>
-                        </div>
-                      </div>
                     </div>
-                   <!-- End Category Correlation Card -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <!-- Milk Prediction Card -->
-                    <div class="col-12">
-                       <div class="card shadow-sm">
-                           <div class="card-body d-flex flex-column p-4">
-                               <h3 class="h5 fw-semibold text-center text-dark mb-2">Sales Prediction Example: Milk</h3>
-                               <p class="text-center text-muted mb-3 fs-6">(Linear Regression vs. Actual Monthly - Placeholder Data)</p>
-                               <div class="chart-container flex-grow-1">
-                                  <canvas id="milkPredictionChart"></canvas> <!-- Bars will be purple -->
-                               </div>
-                               <div class="insights-list mt-3">
-                                 <ul class="list-unstyled mb-0 fs-6">
-                                   <li>▸ Model captures general trend, useful for baseline planning.</li>
-                                   <li>▸ Misses volatility; advanced models (ARIMA) needed for accuracy.</li>
-                                   <li>▸ <span class="badge bg-danger-subtle text-danger-emphasis">Validation (RMSE) required before use.</span></li>
-                                 </ul>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <!-- End Milk Prediction Card -->
-                </div><!-- End nested row for charts -->
-             </div> <!-- End card-body for Results -->
-           </div> <!-- End card for Results -->
-       </div>
-       <!-- End Results & Findings Section -->
+    <!-- CREDITS & LICENSE -->
+    <section id="credits" class="py-6 bg-white dark:bg-dark-900 border-t border-slate-200 dark:border-dark-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <!-- Compact Footer Content -->
+            <div class="space-y-2">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">
+                    © 2025 Sumit Kumar · IITM BS Degree Program · For academic use only
+                </p>
+                
+                <div class="w-20 h-px bg-slate-300 dark:bg-slate-600 mx-auto"></div>
+                
+                <p class="text-xs text-slate-600 dark:text-slate-400">
+                    License: MIT - see LICENSE in repository · Project Repository: BDM-Project
+                </p>
+                
+                <!-- Social Links with Text -->
+                <div class="flex justify-center gap-6 pt-1">
+                    <a href="https://github.com/repo-sumit" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <i class="fab fa-github text-sm"></i>
+                        <span class="text-xs">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/in-sumit" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <i class="fab fa-linkedin text-sm"></i>
+                        <span class="text-xs">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <!-- Recommendations Section -->
-       <div class="col-12">
-         <div class="card shadow-sm card-accent-left">
-           <div class="card-header bg-warning bg-opacity-10 border-warning">
-             <h2 class="h4 mb-0 text-warning fw-semibold">Recommendations</h2>
-           </div>
-           <div class="card-body p-4">
-             <ul class="nav nav-tabs nav-fill mb-4" id="recommendationTabs" role="tablist">
-               <li class="nav-item" role="presentation">
-                 <button class="nav-link active fs-6" id="recInv-tab" data-bs-toggle="tab" data-bs-target="#recInv-pane" type="button" role="tab" aria-controls="recInv-pane" aria-selected="true">Inventory</button>
-               </li>
-               <li class="nav-item" role="presentation">
-                 <button class="nav-link fs-6" id="recSpace-tab" data-bs-toggle="tab" data-bs-target="#recSpace-pane" type="button" role="tab" aria-controls="recSpace-pane" aria-selected="false">Space/Layout</button>
-               </li>
-               <li class="nav-item" role="presentation">
-                 <button class="nav-link fs-6" id="recGrowth-tab" data-bs-toggle="tab" data-bs-target="#recGrowth-pane" type="button" role="tab" aria-controls="recGrowth-pane" aria-selected="false">Growth</button>
-               </li>
-               <li class="nav-item" role="presentation">
-                 <button class="nav-link fs-6" id="recImpact-tab" data-bs-toggle="tab" data-bs-target="#recImpact-pane" type="button" role="tab" aria-controls="recImpact-pane" aria-selected="false">Impact</button>
-               </li>
-             </ul>
-             <div class="tab-content" id="recommendationTabsContent">
+    <!-- CHART SCRIPTS -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
 
-               <!-- Inventory Tab Pane -->
-               <div class="tab-pane fade show active" id="recInv-pane" role="tabpanel" aria-labelledby="recInv-tab" tabindex="0">
-                 <h3 class="h5 fw-semibold text-dark mb-3">Optimizing Inventory:</h3>
-                 <div class="table-responsive">
-                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
-                      <thead class="table-light">
-                         <tr>
-                           <th scope="col">Recommendation</th>
-                           <th scope="col">Rationale</th>
-                           <th scope="col">Priority</th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                          <tr><td>JIT/Lean for Cat A perishables</td><td>High volume, wastage risk</td><td class="text-danger fw-medium">High</td></tr>
-                          <tr><td>Adjust stock via ABC Analysis</td><td>Align stock with sales</td><td class="text-danger fw-medium">High</td></tr>
-                          <tr><td>Use Sales Forecasts (start simple)</td><td>Reduce guesswork</td><td class="text-warning fw-medium">Medium</td></tr>
-                          <tr><td>Improve supplier communication</td><td>Ensure peak availability</td><td class="text-warning fw-medium">Medium</td></tr>
-                          <tr><td>Discount near-expiry items</td><td>Reduce spoilage loss</td><td class="text-warning fw-medium">Medium</td></tr>
-                      </tbody>
-                   </table>
-                 </div>
-               </div>
-               <!-- End Inventory Tab Pane -->
-
-               <!-- Space/Layout Tab Pane -->
-               <div class="tab-pane fade" id="recSpace-pane" role="tabpanel" aria-labelledby="recSpace-tab" tabindex="0">
-                 <h3 class="h5 fw-semibold text-dark mb-3">Addressing Space & Layout:</h3>
-                 <div class="table-responsive">
-                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
-                      <thead class="table-light">
-                         <tr>
-                           <th scope="col">Recommendation</th>
-                           <th scope="col">Rationale</th>
-                           <th scope="col">Priority</th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                          <tr><td>Prioritize shelf space for Cat A & B</td><td>Maximize revenue/space</td><td class="text-danger fw-medium">High</td></tr>
-                          <tr><td>Optimize layout: Place correlated items nearby</td><td>Encourage cross-selling</td><td class="text-warning fw-medium">Medium</td></tr>
-                          <tr><td>Invest in vertical shelving</td><td>Maximize storage capacity</td><td class="text-warning fw-medium">Medium</td></tr>
-                          <tr><td>Reduce stock of Cat C items</td><td>Free up valuable space</td><td class="text-warning fw-medium">Medium</td></tr>
-                      </tbody>
-                   </table>
-                 </div>
-               </div>
-               <!-- End Space/Layout Tab Pane -->
-
-               <!-- Growth Tab Pane -->
-               <div class="tab-pane fade" id="recGrowth-pane" role="tabpanel" aria-labelledby="recGrowth-tab" tabindex="0">
-                 <h3 class="h5 fw-semibold text-dark mb-3">Enhancing Business Growth:</h3>
-                 <div class="table-responsive">
-                   <table class="table table-striped table-hover table-bordered fs-6 align-middle">
-                     <thead class="table-light">
-                        <tr>
-                           <th scope="col">Recommendation</th>
-                           <th scope="col">Rationale</th>
-                           <th scope="col">Priority</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                         <tr><td>Automate Tracking (Excel -> POS)</td><td>Reduce manual effort, enable analysis</td><td class="text-danger fw-medium">High</td></tr>
-                         <tr><td>Hire Temporary Support (Peaks/Exams)</td><td>Manage bottlenecks, owner focus</td><td class="text-danger fw-medium">High</td></tr>
-                         <tr><td>Introduce Targeted Home Delivery</td><td>Compete, add convenience</td><td class="text-warning fw-medium">Medium</td></tr>
-                         <tr><td>Implement Seasonal/Bundled Promotions</td><td>Boost sales, use correlations</td><td class="text-warning fw-medium">Medium</td></tr>
-                         <tr><td>Establish Backup Operational Plan</td><td>Ensure business continuity</td><td class="text-warning fw-medium">Medium</td></tr>
-                     </tbody>
-                   </table>
-                 </div>
-               </div>
-               <!-- End Growth Tab Pane -->
-
-               <!-- Impact Tab Pane -->
-               <div class="tab-pane fade" id="recImpact-pane" role="tabpanel" aria-labelledby="recImpact-tab" tabindex="0">
-                 <h3 class="h5 fw-semibold text-dark mb-4">Projected Benefits:</h3>
-                 <div class="row g-4">
-                   <div class="col-md-4">
-                     <div class="card h-100 bg-success-subtle border-success-subtle shadow-sm">
-                       <div class="card-body p-4">
-                         <h4 class="h5 fw-semibold text-success-emphasis mb-3 d-flex align-items-center">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
-                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                           </svg> Financial
-                         </h4>
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
-                           <li>▸ Profit Margin Increase</li>
-                           <li>▸ Reduced Wastage Costs</li>
-                           <li>▸ Improved Cash Flow</li>
-                           <li>▸ Revenue Growth Potential</li>
-                         </ul>
-                       </div>
-                     </div>
-                   </div>
-                   <div class="col-md-4">
-                     <div class="card h-100 bg-info-subtle border-info-subtle shadow-sm">
-                       <div class="card-body p-4">
-                         <h4 class="h5 fw-semibold text-info-emphasis mb-3 d-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
-                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                           </svg> Operational
-                         </h4>
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
-                           <li>▸ Fewer Stockouts</li>
-                           <li>▸ Optimized Inventory/Space</li>
-                           <li>▸ Streamlined Processes</li>
-                           <li>▸ Better Demand Preparedness</li>
-                         </ul>
-                       </div>
-                     </div>
-                   </div>
-                   <div class="col-md-4">
-                     <div class="card h-100 bg-warning-subtle border-warning-subtle shadow-sm">
-                       <div class="card-body p-4">
-                          <h4 class="h5 fw-semibold text-warning-emphasis mb-3 d-flex align-items-center">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
-                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                           </svg> Strategic
-                         </h4>
-                         <ul class="list-unstyled text-muted mb-0 ps-3 fs-6">
-                           <li>▸ Enhanced Customer Satisfaction</li>
-                           <li>▸ Improved Competitiveness</li>
-                           <li>▸ Sustainable Growth Path</li>
-                           <li>▸ Reduced Owner Burden</li>
-                         </ul>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <!-- End Impact Tab Pane -->
-             </div> <!-- End Tab Content -->
-           </div> <!-- End Recommendations Card Body -->
-         </div> <!-- End Recommendations Card -->
-       </div>
-       <!-- End Recommendations Section -->
-
-    </div> <!-- End main grid row -->
-  </div> <!-- End main container -->
-
-  <!-- Bootstrap 5 JS Bundle (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  <!-- Custom JavaScript -->
-  <script>
-    // --- JavaScript for Image Gallery and Charts ---
-
-    // --- Image Gallery Logic ---
-    let currentStoreImage = 1;
-    const totalStoreImages = 3;
-
-    function changeStoreImage(direction) {
-      const currentImgElement = document.getElementById(`storeImage${currentStoreImage}`);
-      if (currentImgElement) {
-          currentImgElement.classList.remove('active');
-      }
-      currentStoreImage += direction;
-      if (currentStoreImage > totalStoreImages) {
-          currentStoreImage = 1;
-      } else if (currentStoreImage < 1) {
-          currentStoreImage = totalStoreImages;
-      }
-      const nextImgElement = document.getElementById(`storeImage${currentStoreImage}`);
-      if (nextImgElement) {
-          nextImgElement.classList.add('active');
-      }
-    }
-    // --- End Image Gallery Logic ---
-
-    // --- Chart.js Integration ---
-    function createChart(id, type, data, options) {
-      const ctx = document.getElementById(id)?.getContext('2d');
-       if (!ctx) {
-           console.error(`Canvas element with ID "${id}" not found.`);
-           return null;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
         }
 
-      // --- Default Chart Options - REVISED FONT SIZES (Slightly Smaller) ---
-      const defaultOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'top',
-                 labels: {
-                     font: { size: 12 }, // REVISED Legend font size
-                     boxWidth: 15,
-                     padding: 12,
-                     color: '#495057'
-                 }
-            },
-            tooltip: {
-                mode: 'index',
-                intersect: false,
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                titleFont: { size: 13 }, // REVISED Tooltip title font size
-                bodyFont: { size: 12 }, // REVISED Tooltip body font size
-                padding: 12
-            },
-            title: {
-                display: false,
-                font: { size: 16 }, // REVISED default title size
-                color: '#212529'
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Mobile theme toggle sync
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        if (themeToggleMobile) {
+            themeToggleMobile.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            });
+        }
+
+        // Analysis Methods Chart Toggle Functions
+        function toggleTrendCharts() {
+            const container = document.getElementById('trendChartsContainer');
+            const icon = document.getElementById('trendIcon');
+            const text = document.getElementById('trendText');
+            
+            if (container.style.maxHeight === '0px' || container.style.maxHeight === '') {
+                container.style.maxHeight = '400px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Charts';
+            } else {
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Charts';
             }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    font: { size: 11 }, // REVISED X-axis label font size
-                    color: '#6c757d',
-                    autoSkip: true,
-                    maxRotation: 45,
-                    minRotation: 0
+        }
+
+        function toggleMLCharts() {
+            const container = document.getElementById('mlChartsContainer');
+            const icon = document.getElementById('mlIcon');
+            const text = document.getElementById('mlText');
+            
+            if (container.style.maxHeight === '0px' || container.style.maxHeight === '') {
+                container.style.maxHeight = '400px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Predictions';
+            } else {
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Predictions';
+            }
+        }
+
+        function toggleABCCharts() {
+            const container = document.getElementById('abcChartsContainer');
+            const icon = document.getElementById('abcIcon');
+            const text = document.getElementById('abcText');
+            
+            if (container.style.maxHeight === '0px' || container.style.maxHeight === '') {
+                container.style.maxHeight = '400px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide ABC Analysis';
+            } else {
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show ABC Analysis';
+            }
+        }
+
+        function toggleCorrelationCharts() {
+            const container = document.getElementById('correlationChartsContainer');
+            const icon = document.getElementById('corrIcon');
+            const text = document.getElementById('corrText');
+            
+            if (container.style.maxHeight === '0px' || container.style.maxHeight === '') {
+                container.style.maxHeight = '400px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Correlation Matrix';
+            } else {
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Correlation Matrix';
+            }
+        }
+
+        // Chart grid helper
+        const grid = { color: 'rgba(148,163,184,.12)', drawBorder: false };
+
+        // HERO: Daily Trend (sample monthly points Jan–Jun)
+        (() => {
+            const ctx = document.getElementById('dailyTrend');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Avg Pickups / Day',
+                        data: [3200, 3600, 4100, 4400, 4700, 5200],
+                        tension: 0.35,
+                        borderWidth: 3,
+                        pointRadius: 3,
+                        backgroundColor: 'rgba(14,165,233,0.08)',
+                        borderColor: 'rgba(14,165,233,1)'
+                    }]
                 },
-                title: {
-                    display: true,
-                    font: { size: 12 }, // REVISED Axis title font size
-                    color: '#495057'
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid }, y: { grid, beginAtZero: false } }
+                }
+            });
+        })();
+
+        // FINDINGS: Pickups by Hour (synthetic, resembles evening peaks)
+        (() => {
+            const hrs = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
+            const values = [35, 28, 22, 18, 16, 25, 60, 140, 220, 280, 300, 310, 330, 350, 360, 370, 420, 520, 640, 700, 730, 710, 620, 480];
+            new Chart(document.getElementById('hourlyBox'), {
+                type: 'bar',
+                data: {
+                    labels: hrs,
+                    datasets: [{
+                        label: 'Pickups',
+                        data: values,
+                        backgroundColor: 'rgba(6,78,59,0.9)',
+                        borderColor: 'rgba(6,78,59,1)'
+                    }]
                 },
-                grid: { display: false }
-            },
-            y: {
-                beginAtZero: true,
-                ticks: { font: { size: 11 }, color: '#6c757d' }, // REVISED Y-axis label font size
-                title: {
-                    display: true,
-                    font: { size: 12 }, // REVISED Axis title font size
-                    color: '#495057'
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid }, y: { grid, beginAtZero: true } },
+                    maintainAspectRatio: false
+                }
+            });
+        })();
+
+        // FINDINGS: Stacked status by pickup point (City vs Airport)
+        (() => {
+            const labels = ['City', 'Airport'];
+            const completed = [2831, 2500];
+            const cancelled = [1066, 198];
+            const noCars = [937, 1713];
+            new Chart(document.getElementById('statusStacked'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'Completed', data: completed, stack: 's', backgroundColor: 'rgba(34,197,94,0.9)' },
+                        { label: 'Cancelled', data: cancelled, stack: 's', backgroundColor: 'rgba(249,115,22,0.9)' },
+                        { label: 'No Cars', data: noCars, stack: 's', backgroundColor: 'rgba(239,68,68,0.9)' }
+                    ]
                 },
-                grid: { color: '#dee2e6' }
+                options: {
+                    responsive: true,
+                    scales: { x: { stacked: true, grid }, y: { stacked: true, grid, beginAtZero: true } },
+                    maintainAspectRatio: false
+                }
+            });
+        })();
+
+        // FINDINGS: Weekly trend (7 days sample)
+        (() => {
+            const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const data = [4200, 4300, 4450, 4600, 4900, 5400, 5100];
+            new Chart(document.getElementById('weeklyTrend'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Pickups / Day',
+                        data,
+                        borderWidth: 3,
+                        pointRadius: 3,
+                        tension: 0.35,
+                        backgroundColor: 'rgba(14,165,233,0.06)',
+                        borderColor: 'rgba(14,165,233,0.95)'
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid }, y: { grid, beginAtZero: false } },
+                    maintainAspectRatio: false
+                }
+            });
+        })();
+
+        // Toggle Functions for Collapsible Sections
+        function toggleStatsTable() {
+            const container = document.getElementById('statsTableContainer');
+            const icon = document.getElementById('toggleIcon');
+            const text = document.getElementById('toggleText');
+
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Summary Table';
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Summary Table';
             }
-        },
-        animation: { duration: 600 },
-        hover: { mode: 'nearest', intersect: true }
-      };
+        }
 
-      // --- Merge Default Options with User-Provided Options ---
-      const mergedOptions = {
-          ...defaultOptions,
-          ...options,
-          plugins: { ...defaultOptions.plugins, ...options?.plugins, legend: {...defaultOptions.plugins.legend, ...options?.plugins?.legend}, title: {...defaultOptions.plugins.title, ...options?.plugins?.title} },
-          scales: {
-              x: { ...defaultOptions.scales.x, ...options?.scales?.x, title: {...defaultOptions.scales.x.title, ...options?.scales?.x?.title}, ticks: {...defaultOptions.scales.x.ticks, ...options?.scales?.x?.ticks}},
-              y: { ...defaultOptions.scales.y, ...options?.scales?.y, title: {...defaultOptions.scales.y.title, ...options?.scales?.y?.title}, ticks: {...defaultOptions.scales.y.ticks, ...options?.scales?.y?.ticks}},
-              ...(options?.scales?.y1 && { y1: { ...defaultOptions.scales.y, position: 'right', grid: { drawOnChartArea: false }, ...options.scales.y1, title: {...defaultOptions.scales.y.title, ...options?.scales?.y1?.title}, ticks: {...defaultOptions.scales.y.ticks, ...options?.scales?.y1?.ticks}}})
+        function toggleCorrelationMatrix() {
+            const container = document.getElementById('correlationMatrixContainer');
+            const icon = document.getElementById('correlationIcon');
+            const text = document.getElementById('correlationText');
+
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Correlation Matrix';
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Correlation Matrix';
             }
-       };
+        }
 
-      return new Chart(ctx, {
-        type: type,
-        data: data,
-        options: mergedOptions
-      });
-    }
-    // --- End Chart.js Integration ---
+        function toggleTemporalCharts() {
+            const container = document.getElementById('temporalChartsContainer');
+            const icon = document.getElementById('temporalIcon');
+            const text = document.getElementById('temporalText');
 
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Temporal Charts';
 
-    // --- Chart Data Definitions (Same data as before) ---
-    const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan+1'];
-    const monthAvgSalesData = [100, 95, 110, 130, 180, 190, 195, 120, 125, 210, 140, 205, 90];
-    const fmcgSalesData = [2000, 1700, 2100, 2400, 3000, 3100, 3050, 2000, 1800, 2900, 2100, 2800, 1600];
-    const dairySalesData = [1200, 1100, 1300, 1500, 1900, 2000, 1950, 1400, 1500, 2100, 1500, 2000, 1100];
-    const groceriesSalesData = [800, 700, 900, 1000, 1200, 1300, 1250, 800, 850, 1100, 850, 1000, 700];
-    const abcCategories = ['A', 'B', 'C'];
-    const abcVolumePercent = [76, 17, 7];
-    const correlationPairs = ['FMCG & Groceries', 'FMCG & Dairy', 'Dairy & Groceries'];
-    const correlationValues = [0.65, 0.61, 0.43];
-    const milkActualSales = [1200, 1000, 1150, 1300, 1600, 1700, 1650, 1250, 1300, 1800, 1400, 1750, 950];
-    const milkPredictedSales = [1180, 1100, 1200, 1350, 1550, 1680, 1600, 1300, 1350, 1700, 1450, 1650, 1050];
-    // --- End Chart Data Definitions ---
-
-
-    // --- Initialize Charts and Gallery on DOM Load ---
-    document.addEventListener("DOMContentLoaded", () => {
-
-        // --- Initialize Image Gallery ---
-         const firstStoreImage = document.getElementById('storeImage1');
-         if (firstStoreImage) {
-             firstStoreImage.classList.add('active');
-         } else {
-             console.warn("First store image (storeImage1) not found for gallery initialization.");
-         }
-         // --- End Image Gallery Initialization ---
-
-        // --- Get Bootstrap Theme Colors ---
-        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-primary').trim() || '#0d6efd';
-        const successColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-success').trim() || '#198754';
-        const warningColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-warning').trim() || '#ffc107';
-        const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-danger').trim() || '#dc3545';
-        const infoColor = getComputedStyle(document.documentElement).getPropertyValue('--bs-info').trim() || '#0dcaf0';
-        const purpleColor = '#6f42c1'; // Bootstrap purple variable
-        const purpleColorTransparent = 'rgba(111, 66, 193, 0.7)'; // Purple with transparency
-        // --- End Bootstrap Color Fetching ---
-
-
-        // --- Create Chart Instances (Using Revised Default Font Sizes) ---
-
-        // Chart 1: Monthly Sales Distribution (Bar Chart) - PURPLE
-        createChart('monthlySalesChart', 'bar', {
-            labels: monthLabels,
-            datasets: [{
-                label: 'Average Daily Units Sold',
-                data: monthAvgSalesData,
-                backgroundColor: purpleColorTransparent, // CHANGED color
-                borderColor: purpleColor, // CHANGED color
-                borderWidth: 1
-            }]
-        }, {
-            plugins: { legend: { display: true } },
-            scales: {
-                x: { title: { text: 'Month' } },
-                y: { title: { text: 'Avg. Daily Units' } }
+                // Create charts when expanded
+                setTimeout(() => {
+                    createTemporalCharts();
+                }, 300);
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Temporal Charts';
             }
-        });
+        }
 
-        // Chart 2: Category Sales Trend (Line Chart) - SHARP EDGES
-        createChart('categoryTrendChart', 'line', {
-            labels: monthLabels,
-            datasets: [
-                { label: 'FMCG', data: fmcgSalesData, borderColor: dangerColor, backgroundColor: 'rgba(220, 53, 69, 0.1)', fill: false, tension: 0 }, // CHANGED tension to 0
-                { label: 'Dairy', data: dairySalesData, borderColor: primaryColor, backgroundColor: 'rgba(13, 110, 253, 0.1)', fill: false, tension: 0 }, // CHANGED tension to 0
-                { label: 'Groceries', data: groceriesSalesData, borderColor: successColor, backgroundColor: 'rgba(25, 135, 84, 0.1)', fill: false, tension: 0 } // CHANGED tension to 0
-            ]
-        }, {
-            plugins: { legend: { display: true } },
-            scales: {
-                 x: { title: { text: 'Month' } },
-                 y: { title: { text: 'Total Monthly Units' } }
+        function createTemporalCharts() {
+            // Daily Pickups Data
+            const dailyPickupsData = {
+                labels: ['2015-01-01', '2015-01-02', '2015-01-03', '2015-01-04', '2015-01-05', '2015-01-06', '2015-01-07', '2015-01-08', '2015-01-09', '2015-01-10', '2015-01-11', '2015-01-12', '2015-01-13', '2015-01-14', '2015-01-15', '2015-01-16', '2015-01-17', '2015-01-18', '2015-01-19', '2015-01-20', '2015-01-21', '2015-01-22', '2015-01-23', '2015-01-24', '2015-01-25', '2015-01-26', '2015-01-27', '2015-01-28', '2015-01-29', '2015-01-30', '2015-01-31', '2015-02-01', '2015-02-02', '2015-02-03', '2015-02-04', '2015-02-05', '2015-02-06', '2015-02-07', '2015-02-08', '2015-02-09', '2015-02-10', '2015-02-11', '2015-02-12', '2015-02-13', '2015-02-14', '2015-02-15', '2015-02-16', '2015-02-17', '2015-02-18', '2015-02-19', '2015-02-20', '2015-02-21', '2015-02-22', '2015-02-23', '2015-02-24', '2015-02-25', '2015-02-26', '2015-02-27', '2015-02-28', '2015-03-01', '2015-03-02', '2015-03-03', '2015-03-04', '2015-03-05', '2015-03-06', '2015-03-07', '2015-03-08', '2015-03-09', '2015-03-10', '2015-03-11', '2015-03-12', '2015-03-13', '2015-03-14', '2015-03-15', '2015-03-16', '2015-03-17', '2015-03-18', '2015-03-19', '2015-03-20', '2015-03-21', '2015-03-22', '2015-03-23', '2015-03-24', '2015-03-25', '2015-03-26', '2015-03-27', '2015-03-28', '2015-03-29', '2015-03-30', '2015-03-31', '2015-04-01', '2015-04-02', '2015-04-03', '2015-04-04', '2015-04-05', '2015-04-06', '2015-04-07', '2015-04-08', '2015-04-09', '2015-04-10', '2015-04-11', '2015-04-12', '2015-04-13', '2015-04-14', '2015-04-15', '2015-04-16', '2015-04-17', '2015-04-18', '2015-04-19', '2015-04-20', '2015-04-21', '2015-04-22', '2015-04-23', '2015-04-24', '2015-04-25', '2015-04-26', '2015-04-27', '2015-04-28', '2015-04-29', '2015-04-30', '2015-05-01', '2015-05-02', '2015-05-03', '2015-05-04', '2015-05-05', '2015-05-06', '2015-05-07', '2015-05-08', '2015-05-09', '2015-05-10', '2015-05-11', '2015-05-12', '2015-05-13', '2015-05-14', '2015-05-15', '2015-05-16', '2015-05-17', '2015-05-18', '2015-05-19', '2015-05-20', '2015-05-21', '2015-05-22', '2015-05-23', '2015-05-24', '2015-05-25', '2015-05-26', '2015-05-27', '2015-05-28', '2015-05-29', '2015-05-30', '2015-05-31', '2015-06-01', '2015-06-02', '2015-06-03', '2015-06-04', '2015-06-05', '2015-06-06', '2015-06-07', '2015-06-08', '2015-06-09', '2015-06-10', '2015-06-11', '2015-06-12', '2015-06-13', '2015-06-14', '2015-06-15', '2015-06-16', '2015-06-17', '2015-06-18', '2015-06-19', '2015-06-20', '2015-06-21', '2015-06-22', '2015-06-23', '2015-06-24', '2015-06-25', '2015-06-26', '2015-06-27', '2015-06-28', '2015-06-29', '2015-06-30'],
+                datasets: [{
+                    label: 'Daily Pickups',
+                    data: [54671, 39668, 59244, 43230, 43591, 53399, 62982, 72847, 71021, 80135, 61057, 58941, 64437, 64692, 67822, 73097, 75271, 76191, 47381, 55673, 60279, 66275, 72321, 82543, 61281, 45082, 25288, 61197, 69669, 84064, 94459, 80299, 70922, 71150, 68266, 81519, 86787, 82668, 66342, 63174, 65968, 73491, 83800, 98924, 102275, 92460, 74822, 74090, 73313, 89309, 102005, 100108, 70724, 71968, 80381, 75867, 84313, 89136, 89346, 73420, 57334, 74636, 71819, 77201, 81879, 81656, 63785, 53866, 71706, 65295, 73486, 78546, 91053, 65151, 54742, 62279, 70433, 75372, 94406, 80607, 71278, 60440, 64204, 73740, 77595, 84403, 91979, 78136, 62772, 78491, 69179, 73359, 76024, 69016, 59853, 53175, 68048, 71569, 77217, 80710, 82193, 69820, 56741, 63198, 66212, 78195, 82970, 93678, 80447, 78126, 68506, 81765, 91014, 98407, 106421, 91368, 64848, 68633, 75489, 83661, 91257, 105291, 82398, 65395, 75616, 80617, 86476, 89863, 98359, 82326, 70180, 78019, 84134, 93213, 99068, 120633, 97252, 76537, 84832, 90627, 94912, 85981, 78527, 68791, 60347, 72675, 88315, 94056, 97208, 104624, 99109, 93253, 97361, 86754, 94422, 101269, 101690, 90579, 77247, 82247, 87110, 100960, 102698, 101186, 91805, 87016, 88710, 93300, 99300, 100912, 101990, 91063, 75456, 92811, 90698, 99408, 98856, 135111, 96150, 74766, 82220],
+                    borderColor: 'rgb(34, 197, 94)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    tension: 0.1,
+                    fill: true
+                }]
+            };
+
+            // Create Daily Pickups Chart
+            const dailyCtx = document.getElementById('dailyPickupsChart').getContext('2d');
+            // Clear any existing chart
+            Chart.getChart(dailyCtx)?.destroy();
+
+            new Chart(dailyCtx, {
+                type: 'line',
+                data: dailyPickupsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Uber Pickups in NYC (Jan-Jun 2015)'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            },
+                            ticks: {
+                                maxTicksLimit: 10
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Pickups'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Hourly Boxplot Data (simplified as line chart with error bars)
+            const hourlyData = {
+                labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
+                datasets: [{
+                    label: 'Average Pickups by Hour',
+                    data: [1200, 800, 500, 300, 250, 400, 1500, 3200, 4500, 3800, 3500, 4200, 5000, 5200, 5500, 6200, 7500, 8200, 8500, 7800, 6500, 4200, 2800, 1800],
+                    borderColor: 'rgb(34, 197, 94)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                    tension: 0.1
+                }]
+            };
+
+            // Create Hourly Chart
+            const hourlyCtx = document.getElementById('hourlyBoxplotChart').getContext('2d');
+
+            // Clear any existing chart
+            Chart.getChart(hourlyCtx)?.destroy();
+
+            new Chart(hourlyCtx, {
+                type: 'line',
+                data: hourlyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Uber Pickups by Hour of Day'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Hour of Day'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Pickups'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Toggle function for spatial heatmap
+        function toggleSpatialHeatmap() {
+            const container = document.getElementById('spatialHeatmapContainer');
+            const icon = document.getElementById('spatialIcon');
+            const text = document.getElementById('spatialText');
+
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Heatmap';
+
+                // Create heatmap when expanded
+                setTimeout(() => {
+                    createSpatialHeatmap();
+                }, 300);
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Heatmap';
             }
-        });
+        }
 
-         // Chart 3: ABC Analysis (Pie Chart)
-        createChart('abcChart', 'pie', {
-            labels: abcCategories,
-            datasets: [{
-                label: '% Volume Contribution',
-                data: abcVolumePercent,
-                backgroundColor: [ 'rgba(25, 135, 84, 0.8)', 'rgba(255, 193, 7, 0.8)', 'rgba(220, 53, 69, 0.8)' ],
-                borderColor: [ successColor, warningColor, dangerColor ],
-                borderWidth: 1,
-                hoverOffset: 4
-            }]
-        }, {
-            plugins: {
-                 legend: { display: true, position: 'bottom', labels: { font: { size: 12 }, boxWidth: 15, padding: 15 } },
-                 tooltip: {
-                     callbacks: {
-                         label: function(context) {
-                             let label = context.label || '';
-                             if (label) { label += ': '; }
-                             if (context.parsed !== null) { label += context.parsed + '%'; }
-                             return label;
-                         }
-                     }
-                 }
-             },
-        });
+        function createSpatialHeatmap() {
+            const ctx = document.getElementById('spatialHeatmapChart').getContext('2d');
 
-        // Chart 4: Category Correlation (Horizontal Bar Chart)
-        createChart('correlationChart', 'bar', {
-            labels: correlationPairs,
-            datasets: [{
-                label: 'Correlation Coefficient',
-                data: correlationValues,
-                backgroundColor: [ 'rgba(25, 135, 84, 0.7)', 'rgba(13, 110, 253, 0.7)', 'rgba(220, 53, 69, 0.7)' ],
-                borderColor: [ successColor, primaryColor, dangerColor ],
-                borderWidth: 1
-            }]
-        }, {
-             indexAxis: 'y',
-             plugins: { legend: { display: false } },
-             scales: {
-                 x: { title: { text: 'Correlation Coefficient' }, min: 0, max: 1 },
-                 y: { title: { display: false }, ticks: { font: { size: 11 }} }
-             }
-        });
+            // Clear any existing chart
+            Chart.getChart(ctx)?.destroy();
 
-        // Chart 5: Milk Sales Prediction (Combo Bar/Line Chart) - PURPLE BARS
-         createChart('milkPredictionChart', 'bar', {
-            labels: monthLabels,
-            datasets: [
-                { // Actual Sales Dataset (Bar)
-                    label: 'Actual Milk Sales',
-                    data: milkActualSales,
-                    backgroundColor: purpleColorTransparent, // ****** CHANGED color ******
-                    borderColor: purpleColor, // ****** CHANGED color ******
+            // Heatmap data organized by borough and hour
+            const heatmapData = {
+                'Bronx': [121.29, 79.00, 57.61, 42.10, 36.97, 54.84, 108.39, 183.10, 248.90, 229.68, 233.42, 260.35, 289.71, 306.87, 328.35, 372.26, 439.68, 497.77, 527.29, 523.90, 497.74, 440.58, 360.68, 248.10],
+                'Brooklyn': [370.45, 250.03, 182.71, 137.39, 117.81, 172.23, 320.55, 532.71, 707.42, 647.35, 655.42, 719.97, 798.00, 837.52, 890.42, 1007.10, 1191.71, 1359.71, 1469.90, 1474.13, 1409.39, 1246.65, 1008.81, 695.16],
+                'EWR': [0.65, 0.74, 0.77, 0.45, 0.35, 0.45, 0.71, 1.06, 1.35, 1.42, 1.26, 1.32, 1.35, 1.35, 1.42, 1.68, 1.81, 2.03, 2.19, 2.16, 2.00, 1.77, 1.48, 1.06],
+                'Manhattan': [1641.84, 1118.61, 831.84, 647.77, 583.10, 928.42, 1832.71, 3144.45, 4304.39, 3885.19, 3722.97, 4037.00, 4379.03, 4500.13, 4642.71, 5096.77, 5838.10, 6450.03, 6726.52, 6635.35, 6179.84, 5421.74, 4317.48, 2998.52],
+                'Queens': [162.71, 113.52, 87.19, 70.32, 70.32, 102.19, 177.87, 295.48, 395.10, 357.81, 345.16, 375.77, 414.23, 435.00, 465.87, 533.29, 634.52, 726.97, 776.58, 772.90, 723.65, 627.23, 492.81, 332.29],
+                'Staten Island': [9.55, 6.68, 5.16, 4.45, 3.97, 6.00, 11.65, 18.10, 24.58, 21.10, 18.45, 19.61, 22.32, 23.10, 25.52, 29.58, 36.10, 41.84, 44.90, 44.26, 40.74, 34.97, 27.45, 18.74],
+                'Unknown': [0.06, 0.00, 0.03, 0.00, 0.03, 0.03, 0.06, 0.13, 0.16, 0.16, 0.23, 0.23, 0.29, 0.23, 0.26, 0.26, 0.29, 0.32, 0.32, 0.32, 0.29, 0.26, 0.23, 0.16]
+            };
+
+            const boroughs = Object.keys(heatmapData);
+            const hours = Array.from({ length: 24 }, (_, i) => i);
+
+            // Create datasets for each borough
+            const datasets = boroughs.map((borough, boroughIndex) => {
+                const colors = [
+                    'rgba(239, 68, 68, 0.8)',    // Red - Manhattan (highest)
+                    'rgba(34, 197, 94, 0.8)',    // Green - Brooklyn
+                    'rgba(59, 130, 246, 0.8)',   // Blue - Queens
+                    'rgba(249, 115, 22, 0.8)',   // Orange - Bronx
+                    'rgba(168, 85, 247, 0.8)',   // Purple - Staten Island
+                    'rgba(156, 163, 175, 0.8)',  // Gray - EWR
+                    'rgba(234, 179, 8, 0.8)'     // Yellow - Unknown
+                ];
+
+                return {
+                    label: borough,
+                    data: hours.map(hour => ({
+                        x: hour,
+                        y: heatmapData[borough][hour]
+                    })),
+                    backgroundColor: colors[boroughIndex],
+                    borderColor: colors[boroughIndex].replace('0.8', '1'),
                     borderWidth: 1,
-                    order: 2
+                    pointRadius: 3,
+                    pointHoverRadius: 5
+                };
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: datasets
                 },
-                { // Predicted Sales Dataset (Line) - Remains Orange
-                    label: 'Predicted Milk Sales (LR)',
-                    data: milkPredictedSales,
-                    type: 'line',
-                    borderColor: warningColor,
-                    backgroundColor: 'rgba(255, 193, 7, 0.1)',
-                    fill: false,
-                    tension: 0.2, // Keep prediction smooth
-                    borderWidth: 2,
-                    order: 1
-                 }
-            ]
-         }, {
-             plugins: { legend: { display: true } },
-             scales: {
-                 x: { title: { text: 'Month' } },
-                 y: { title: { text: 'Monthly Units' } }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    aspectRatio: 2.5,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'NYC Uber Pickups: Hourly Patterns by Borough',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                title: function (context) {
+                                    return `Hour: ${context[0].parsed.x}:00`;
+                                },
+                                label: function (context) {
+                                    return `${context.dataset.label}: ${context.parsed.y.toFixed(2)} pickups`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: 0,
+                            max: 23,
+                            ticks: {
+                                stepSize: 2,
+                                callback: function (value) {
+                                    return value + ':00';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Hour of Day',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Average Number of Pickups',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                callback: function (value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    elements: {
+                        line: {
+                            tension: 0.2
+                        },
+                        point: {
+                            hoverBackgroundColor: 'white',
+                            hoverBorderWidth: 2
+                        }
+                    }
+                }
+            });
+
+            // Add a separate visual heatmap table below the chart (commented out to prevent layout issues)
+            // setTimeout(() => {
+            //     createHeatmapTable();
+            // }, 100);
+        }
+
+        function createHeatmapTable() {
+            const container = document.getElementById('spatialHeatmapChart').parentElement;
+
+            // Check if table already exists
+            if (container.querySelector('.heatmap-table-container')) {
+                return;
             }
-         });
-        // --- End Chart Creation ---
 
-    }); // End DOMContentLoaded event listener
+            // Create table container
+            const tableContainer = document.createElement('div');
+            tableContainer.className = 'heatmap-table-container mt-6 bg-white dark:bg-dark-800 rounded-lg border border-slate-200 dark:border-dark-600 p-4';
 
-  </script>
-  <!-- End Custom JavaScript -->
+            // Add title
+            const title = document.createElement('h6');
+            title.className = 'font-medium text-slate-900 dark:text-white mb-3 text-sm flex items-center gap-2';
+            title.innerHTML = '<i class="fas fa-table text-orange-600 dark:text-orange-400"></i>Heatmap Sample Data: Peak Hours Analysis';
+
+            // Create simple table with key data
+            const table = document.createElement('table');
+            table.className = 'min-w-full text-xs border-collapse';
+
+            // Add table content
+            table.innerHTML = `
+                <thead>
+                    <tr class="bg-slate-100 dark:bg-dark-700">
+                        <th class="px-3 py-2 text-left font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Time Period</th>
+                        <th class="px-3 py-2 text-center font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Manhattan</th>
+                        <th class="px-3 py-2 text-center font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Brooklyn</th>
+                        <th class="px-3 py-2 text-center font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Queens</th>
+                        <th class="px-3 py-2 text-center font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Bronx</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Early Morning (2-5 AM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(59, 130, 246, 0.3)">735</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(59, 130, 246, 0.2)">152</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(59, 130, 246, 0.2)">79</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(59, 130, 246, 0.2)">45</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Morning Rush (7-9 AM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(34, 197, 94, 0.5)">3778</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.4)">620</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.3)">345</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.3)">216</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Afternoon (12-3 PM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(234, 179, 8, 0.6)">4507</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(234, 179, 8, 0.4)">842</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(234, 179, 8, 0.3)">440</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(234, 179, 8, 0.3)">309</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Evening Rush (5-7 PM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(249, 115, 22, 0.7)">6588</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(249, 115, 22, 0.5)">1415</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(249, 115, 22, 0.4)">752</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(249, 115, 22, 0.4)">513</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Peak Evening (6-8 PM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(239, 68, 68, 0.8)">6681</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600 font-bold" style="background-color: rgba(239, 68, 68, 0.5)">1440</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(239, 68, 68, 0.4)">775</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(239, 68, 68, 0.4)">526</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 font-semibold text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600">Late Night (10 PM-12 AM)</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.4)">3658</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.3)">852</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.3)">413</td>
+                        <td class="px-3 py-2 text-center text-slate-900 dark:text-white border border-slate-300 dark:border-dark-600" style="background-color: rgba(34, 197, 94, 0.2)">305</td>
+                    </tr>
+                </tbody>
+            `;
+
+            // Add legend
+            const legend = document.createElement('p');
+            legend.className = 'text-xs text-slate-500 dark:text-slate-400 mt-3 text-center';
+            legend.textContent = 'Color intensity represents pickup density: Blue (lowest) → Green → Yellow → Orange → Red (highest)';
+
+            // Append elements
+            tableContainer.appendChild(title);
+            tableContainer.appendChild(table);
+            tableContainer.appendChild(legend);
+            container.appendChild(tableContainer);
+        }
+
+        // Toggle function for operational charts
+        function toggleOperationalCharts() {
+            const container = document.getElementById('operationalChartsContainer');
+            const icon = document.getElementById('operationalIcon');
+            const text = document.getElementById('operationalText');
+
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                text.textContent = 'Hide Charts';
+
+                // Create charts when expanded
+                setTimeout(() => {
+                    createOperationalCharts();
+                }, 300);
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                text.textContent = 'Show Charts';
+            }
+        }
+
+        function createOperationalCharts() {
+            // Chart 1: Status Distribution by Pickup Point
+            const statusCtx = document.getElementById('statusDistributionChart').getContext('2d');
+
+            // Clear any existing chart
+            Chart.getChart(statusCtx)?.destroy();
+
+            const statusData = {
+                labels: ['Trip completed', 'No cars available', 'Cancelled'],
+                datasets: [{
+                    label: 'Airport',
+                    data: [1327, 1713, 198],
+                    backgroundColor: 'rgba(239, 68, 68, 0.8)', // Red
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'City',
+                    data: [1504, 937, 1066],
+                    backgroundColor: 'rgba(59, 130, 246, 0.8)', // Blue
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            new Chart(statusCtx, {
+                type: 'bar',
+                data: statusData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribution of Ride Request Statuses by Pickup Point'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Ride Request Status'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Supply-Demand Gap by Hour
+            const supplyCtx = document.getElementById('supplyDemandChart').getContext('2d');
+
+            // Clear any existing chart
+            Chart.getChart(supplyCtx)?.destroy();
+
+            // Data for supply-demand gap (hourly proportions)
+            const hours = Array.from({ length: 24 }, (_, i) => i);
+            const airportNoCarData = [0.471, 0.733, 0.800, 0.600, 0.457, 0.000, 0.044, 0.026, 0.091, 0.093, 0.241, 0.176, 0.128, 0.423, 0.083, 0.139, 0.182, 0.685, 0.786, 0.721, 0.698, 0.736, 0.556, 0.395];
+            const airportCancelledData = [0.000, 0.000, 0.000, 0.000, 0.000, 0.050, 0.089, 0.077, 0.030, 0.070, 0.103, 0.088, 0.103, 0.077, 0.125, 0.139, 0.212, 0.063, 0.024, 0.048, 0.107, 0.076, 0.019, 0.000];
+            const cityNoCarData = [0.667, 0.462, 0.600, 0.563, 0.319, 0.229, 0.262, 0.135, 0.270, 0.245, 0.159, 0.234, 0.262, 0.242, 0.324, 0.290, 0.211, 0.195, 0.108, 0.174, 0.109, 0.095, 0.226, 0.517];
+            const cityCancelledData = [0.067, 0.231, 0.133, 0.063, 0.298, 0.489, 0.476, 0.550, 0.500, 0.422, 0.460, 0.064, 0.095, 0.152, 0.059, 0.194, 0.105, 0.122, 0.135, 0.043, 0.109, 0.167, 0.075, 0.103];
+
+            const supplyData = {
+                labels: hours.map(h => h + ':00'),
+                datasets: [{
+                    label: 'Airport - No Cars Available',
+                    data: airportNoCarData,
+                    backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1,
+                    stack: 'airport'
+                }, {
+                    label: 'Airport - Cancelled',
+                    data: airportCancelledData,
+                    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1,
+                    stack: 'airport'
+                }, {
+                    label: 'City - No Cars Available',
+                    data: cityNoCarData,
+                    backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1,
+                    stack: 'city'
+                }, {
+                    label: 'City - Cancelled',
+                    data: cityCancelledData,
+                    backgroundColor: 'rgba(59, 130, 246, 0.3)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1,
+                    stack: 'city'
+                }]
+            };
+
+            new Chart(supplyCtx, {
+                type: 'bar',
+                data: supplyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Supply-Demand Gap by Hour and Pickup Point'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Hour of Day'
+                            },
+                            ticks: {
+                                maxTicksLimit: 12
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Proportion of Requests'
+                            },
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            });
+        }
+
+
+    </script>
 </body>
+
 </html>
